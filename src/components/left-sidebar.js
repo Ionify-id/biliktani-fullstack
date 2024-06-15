@@ -7,7 +7,7 @@ import { pelaksanaData } from "@/lib/nav-menu-data";
 
 export default function LeftSidebar() {
   return (
-    <aside className="flex flex-col border border-r-1 border-gray-300 w-1/5 min-h-screen max-h-screen p-4">
+    <aside className="sticky top-0 flex flex-col border border-r-1 border-gray-300 w-1/5 h-screen bg-white p-4">
       <div className="flex flex-col justify-items-center items-center w-full">
         <p>
           <Image

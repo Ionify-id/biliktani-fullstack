@@ -15,10 +15,12 @@ export default function NavButton({
   const isActive =
     startPath === "/" ? path === "/" : path.startsWith(startPath);
 
-  const activeStyle = isActive ? "bg-green-50" : "bg-white";
+  const activeStyle = isActive
+    ? "bg-emerald-800 text-white"
+    : "bg-white text-black";
   return (
     <Button
-      className={`w-full ${activeStyle} rounded-xl text-black justify-start hover:bg-green-50`}
+      className={`w-full ${activeStyle} rounded-xl justify-start hover:bg-emerald-800 hover:text-white`}
       onClick={onClick}
     >
       <Image
