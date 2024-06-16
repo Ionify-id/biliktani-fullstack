@@ -1,9 +1,14 @@
 // icon nav menu
 import BerandaIcon from "@/assets/nav-icon/icon-beranda.png";
+import ActiveBerandaIcon from "@/assets/nav-icon/icon-beranda-active.png";
 import SiapTaniIcon from "@/assets/nav-icon/icon-siap-tani.png";
+import ActiveSiapTaniIcon from "@/assets/nav-icon/icon-siap-tani-active.png";
 import RawatTaniIcon from "@/assets/nav-icon/icon-rawat-tani.png";
+import ActiveRawatTaniIcon from "@/assets/nav-icon/icon-rawat-tani-active.png";
 import BinaTaniIcon from "@/assets/nav-icon/icon-bina-tani.png";
+import ActiveBinaTaniIcon from "@/assets/nav-icon/icon-bina-tani-active.png";
 import CatatanIcon from "@/assets/nav-icon/icon-catatan.png";
+import ActiveCatatanIcon from "@/assets/nav-icon/icon-catatan-active.png";
 
 // icon pelaksana
 import DikbudIcon from "@/assets/pelaksana-icon/icon-dikbud.png";
@@ -17,7 +22,8 @@ const navMenu = [
   {
     mainMenu: {
       image: BerandaIcon,
-      alt_image: "beranda menu icon",
+      imageActive: ActiveBerandaIcon,
+      altImage: "beranda menu icon",
       title: "Beranda",
       startPath: "/",
     },
@@ -25,15 +31,12 @@ const navMenu = [
   {
     mainMenu: {
       image: SiapTaniIcon,
-      alt_image: "siap tani menu icon",
+      imageActive: ActiveSiapTaniIcon,
+      altImage: "siap tani menu icon",
       title: "Siap tani",
       startPath: "/siap-tani",
     },
     subMenu: [
-      {
-        href: "/siap-tani/informasi-tanaman",
-        title: "Informasi tanaman",
-      },
       {
         href: "/siap-tani/kalkulator-pupuk",
         title: "Kalkulator pupuk",
@@ -41,6 +44,10 @@ const navMenu = [
       {
         href: "/siap-tani/prakiraan-produktivitas-tanaman",
         title: "Prakiraan produktivitas tanaman",
+      },
+      {
+        href: "/siap-tani/informasi-tanaman",
+        title: "Informasi tanaman",
       },
       {
         href: "/siap-tani/prakiraan-waktu-panen",
@@ -51,15 +58,12 @@ const navMenu = [
   {
     mainMenu: {
       image: RawatTaniIcon,
-      alt_image: "rawat tani menu icon",
+      imageActive: ActiveRawatTaniIcon,
+      altImage: "rawat tani menu icon",
       title: "Rawat tani",
       startPath: "/rawat-tani",
     },
     subMenu: [
-      {
-        href: "/rawat-tani/drainase-lahan-tanaman",
-        title: "Drainase lahan tanaman",
-      },
       {
         href: "/rawat-tani/informasi-hama",
         title: "Informasi hama",
@@ -68,30 +72,26 @@ const navMenu = [
         href: "/rawat-tani/kebutuhan-imigrasi",
         title: "Kebutuhan imrigrasi",
       },
+      {
+        href: "/rawat-tani/drainase-lahan-tanaman",
+        title: "Drainase lahan tanaman",
+      },
     ],
   },
   {
     mainMenu: {
       image: BinaTaniIcon,
-      alt_image: "bina tani menu icon",
+      imageActive: ActiveBinaTaniIcon,
+      altImage: "bina tani menu icon",
       title: "Bina tani",
       startPath: "/bina-tani",
     },
-    subMenu: [
-      {
-        href: "/bina-tani/klinik-tani",
-        title: "Klinik tani",
-      },
-      {
-        href: "/bina-tani/tani-market",
-        title: "Tani market",
-      },
-    ],
   },
   {
     mainMenu: {
       image: CatatanIcon,
-      alt_image: "catatan menu icon",
+      imageActive: ActiveCatatanIcon,
+      altImage: "catatan menu icon",
       title: "Catatan",
       startPath: "/catatan",
     },

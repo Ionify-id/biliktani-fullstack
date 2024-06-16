@@ -7,8 +7,6 @@ import NavSubMenu from "./nav-sub-menu";
 export default function NavMenu({ menu }) {
   const [showSubmenu, setShowSubmenu] = useState(false);
 
-  const { mainMenu, subMenu } = menu;
-
   const toggleSubmenu = () => {
     setShowSubmenu((prevValue) => !prevValue);
   };
@@ -16,21 +14,22 @@ export default function NavMenu({ menu }) {
   return (
     <>
       <NavButton
-        imageSrc={mainMenu.image}
-        altText={mainMenu.alt_image}
-        title={mainMenu.title}
-        startPath={mainMenu.startPath}
+        menu={menu}
         onClick={toggleSubmenu}
+        showSubmenu={showSubmenu}
       />
-      {showSubmenu && (
-        <ul className="w-full">
-          {subMenu.map((menu) => (
-            <li key={menu.title}>
-              <NavSubMenu menu={menu} />
+      <ul
+        className={`w-full transition-opacity duration-300 ${
+          showSubmenu ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {showSubmenu &&
+          menu.subMenu.map((submenu) => (
+            <li key={submenu.title}>
+              <NavSubMenu menu={submenu} />
             </li>
           ))}
-        </ul>
-      )}
+      </ul>
     </>
   );
 }

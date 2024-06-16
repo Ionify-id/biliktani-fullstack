@@ -7,11 +7,11 @@ import React from "react";
 export default function NavSubMenu({ menu }) {
   const path = usePathname();
   const activeStyle =
-    path === menu.href ? "text-emerald-500 font-bold" : "text-gray-500";
+    path === menu.href ? "text-emerald-800 font-bold" : "text-gray-500";
   return (
     <Link
       href={menu.href}
-      className={`block px-4 py-2 text-sm ${activeStyle} hover:font-bold hover:text-emerald-500`}
+      className={`block px-4 py-2 text-sm ${activeStyle} hover:font-bold hover:text-emerald-800`}
     >
       {menu.title}
     </Link>
