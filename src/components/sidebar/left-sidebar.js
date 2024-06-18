@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import NavBar from "./navigation/nav-bar";
+import NavBar from "@/components/navigation/nav-bar";
 
 import BilikTaniIcon from "@/assets/bilik-tani.png";
 import { pelaksanaData } from "@/lib/nav-menu-data";
