@@ -54,6 +54,8 @@ export default function WeatherInfo() {
     getWeatherData();
   }, []);
 
+  console.log(weatherData);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(getCurrentTime());
@@ -78,7 +80,7 @@ export default function WeatherInfo() {
       <p>Cuaca hari ini</p>
       {weatherData !== null && (
         <div
-          className={`w-full flex flex-row rounded-xl bg-gradient-to-t from-sky-500 to-sky-100 ${weatherData.timeCondition.timeStyle}`}
+          className={`w-full flex flex-row rounded-xl bg-gradient-to-t ${weatherData.timeCondition.timeStyle}`}
         >
           <div className="w-2/5 flex flex-col p-4">
             <Image

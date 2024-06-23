@@ -47,8 +47,6 @@ export function getTimePeriod() {
     case "Malam":
       timeStyle = "from-blue-800 to-blue-950";
       break;
-    default:
-      timeStyle = "from-sky-500 to-sky-100";
   }
 
   return { timePeriod, timeStyle };

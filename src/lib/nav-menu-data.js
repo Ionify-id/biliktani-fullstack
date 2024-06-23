@@ -87,15 +87,15 @@ const navMenu = [
       startPath: "/bina-tani",
     },
   },
-  {
-    mainMenu: {
-      image: CatatanIcon,
-      imageActive: ActiveCatatanIcon,
-      altImage: "catatan menu icon",
-      title: "Catatan",
-      startPath: "/catatan",
-    },
-  },
+  // {
+  //   mainMenu: {
+  //     image: CatatanIcon,
+  //     imageActive: ActiveCatatanIcon,
+  //     altImage: "catatan menu icon",
+  //     title: "Catatan",
+  //     startPath: "/catatan",
+  //   },
+  // },
 ];
 
 const pelaksanaData = [
