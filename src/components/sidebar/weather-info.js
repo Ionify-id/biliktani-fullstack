@@ -54,8 +54,6 @@ export default function WeatherInfo() {
     getWeatherData();
   }, []);
 
-  console.log(weatherData);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(getCurrentTime());

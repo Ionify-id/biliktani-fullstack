@@ -1,7 +1,9 @@
-import CardInfo from "@/components/card-info";
 import React from "react";
+import CardInfo from "@/components/card-info.js";
+import { getAllTanaman } from "@/lib/data-informasi/informasi-tanaman";
 
 export default function InformasiTanamanPage() {
+  const allTanaman = getAllTanaman();
   return (
     <main className="container overflow-y-auto max-h-screen">
       <div className="container">
@@ -15,18 +17,9 @@ export default function InformasiTanamanPage() {
           </p>
         </div>
         <div className="grid grid-cols-3 gap-8">
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
-          <CardInfo />
+          {allTanaman.map((tanaman) => (
+            <CardInfo key={tanaman.id} data={tanaman} infoType="tanaman" />
+          ))}
         </div>
       </div>
     </main>
