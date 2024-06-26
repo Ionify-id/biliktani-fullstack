@@ -25,7 +25,7 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Tanaman yang Bisa Terkena</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.tanamanTerkena.length > 4 && "grid-cols-2 gap-1"
+                  detailHama.tanamanTerkena.length > 3 && "grid-cols-2 gap-1"
                 }`}
               >
                 {detailHama.tanamanTerkena.map((tanaman, index) => (
@@ -39,7 +39,7 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Ciri-ciri Tanaman Terkena</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.ciriTanaman.length > 4 && "grid-cols-2 gap-1"
+                  detailHama.ciriTanaman.length > 3 && "grid-cols-2 gap-1"
                 }`}
               >
                 {detailHama.ciriTanaman.map((ciri, index) => (
@@ -53,7 +53,7 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Pencegahan</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.caraPencegahan.length > 4 && "grid-cols-2 gap-1"
+                  detailHama.caraPencegahan.length > 3 && "grid-cols-2 gap-1"
                 }`}
               >
                 {detailHama.caraPencegahan.map((pencegahan, index) => (
@@ -67,7 +67,7 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Penanganan</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.penanganan.length > 4 && "grid-cols-2 gap-1"
+                  detailHama.penanganan.length > 3 && "grid-cols-2 gap-1"
                 }`}
               >
                 {detailHama.penanganan.map((penanganan, index) => (
