@@ -13,7 +13,7 @@ export default function WeatherInfo() {
     const timeCondition = getTimePeriod();
     const apiKey = "e6d6475695cb41eea8d132015240706";
     const city = "Bogor";
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&hours`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&hours`;
 
     try {
       setLoading(true);
