@@ -9,6 +9,7 @@ import {
   calculatePrakiraanBiaya,
   formatRupiah,
 } from "@/lib/siap-tani/kalkulator-tani";
+import { Button } from "../ui/button";
 
 export default function FormKalkulatorPupuk() {
   const [formData, setFormData] = useState({
@@ -90,15 +91,15 @@ export default function FormKalkulatorPupuk() {
   return (
     <div className="flex flex-row space-x-8">
       <div className="basis-1/2">
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 mb-4">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          <div className="grid grid-cols-1">
             <label htmlFor="plant" className="text-left mb-2 font-medium">
               Pilih Tanaman
             </label>
             <select
               id="plant"
               name="selectedPlant"
-              className="border border-gray-300 rounded-md py-2"
+              className="border border-gray-300 rounded-md p-2"
               onChange={handlePlantChange}
               value={formData.selectedPlant}
             >
@@ -109,7 +110,7 @@ export default function FormKalkulatorPupuk() {
             </select>
           </div>
 
-          <div className="grid grid-cols-3 gap-x-3 my-4">
+          <div className="grid grid-cols-3 gap-x-4">
             <div>
               <label
                 htmlFor="jumlah-bedeng"
@@ -169,14 +170,14 @@ export default function FormKalkulatorPupuk() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 mt-4">
+          <div className="grid grid-cols-1">
             <label htmlFor="land" className="block text-left mb-2 font-medium">
               Tingkat Kesuburan Tanah
             </label>
             <select
               id="land"
               name="selectedLandOption"
-              className="border border-gray-300 rounded-md py-2"
+              className="border border-gray-300 rounded-md p-2"
               value={formData.selectedLandOption}
               onChange={handleChange}
             >
@@ -189,17 +190,17 @@ export default function FormKalkulatorPupuk() {
             </select>
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="bg-[#0B6653] text-white rounded-md p-2 mt-4 w-full"
+            className="bg-emerald-800 text-white rounded-xl p-2 w-full hover:bg-emerald-700"
           >
             Hitung
-          </button>
+          </Button>
         </form>
       </div>
       <div className="basis-1/2">
-        <p className="text-2xl font-bold text-[#0B6653]">Hasil Perhitungan</p>
-        <label className="text-left mb-2 font-medium">Luas Bersih</label>
+        <p className="text-2xl font-bold text-emerald-800">Hasil Perhitungan</p>
+        <label className="text-left font-medium">Luas Bersih</label>
         <input
           type="text"
           className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"

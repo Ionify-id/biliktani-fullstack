@@ -5,6 +5,7 @@ import {
   plant,
   calculateHarvestDate,
 } from "@/lib/siap-tani/prakiraan-waktu-panen";
+import { Button } from "../ui/button";
 
 export default function FormPrakiraanWaktuPanen() {
   const [formData, setFormData] = useState({
@@ -134,12 +135,12 @@ export default function FormPrakiraanWaktuPanen() {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="bg-[#0B6653] text-white rounded-md p-2 w-full"
+            className="bg-[#0B6653] text-white rounded-xl p-2 w-full text-md hover:bg-emerald-700"
           >
             Hitung
-          </button>
+          </Button>
         </form>
       </div>
 
@@ -183,13 +184,14 @@ export default function FormPrakiraanWaktuPanen() {
           </>
         )}
         <div className="flex items-center">
-          <button
+          <Button
             type="button"
+            variant="outline"
             onClick={handleReset}
-            className="text-emerald-800 border border-emerald-800 rounded-md p-2 mt-4 w-2/3 items-center mx-auto"
+            className="text-emerald-800 border border-emerald-800 text-md rounded-xl p-2 mt-4 w-2/3 items-center mx-auto"
           >
             Reset Perhitungan
-          </button>
+          </Button>
         </div>
       </div>
     </div>

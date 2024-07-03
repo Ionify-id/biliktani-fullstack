@@ -35,7 +35,7 @@ export default function CardInfo({ data, infoType }) {
       <CardContent className="flex flex-col space-y-4">
         <Image
           src={data.image}
-          alt={`Gambar data ${data.title}`}
+          alt={`Gambar data ${data.nama}`}
           width={0}
           height={0}
           className="rounded-xl w-full object-cover h-48 w-96"
