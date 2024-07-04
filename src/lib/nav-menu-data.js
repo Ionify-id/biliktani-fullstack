@@ -69,8 +69,8 @@ const navMenu = [
         title: "Informasi hama",
       },
       {
-        href: "/rawat-tani/kebutuhan-imigrasi",
-        title: "Kebutuhan imrigrasi",
+        href: "/rawat-tani/kebutuhan-air-tanaman",
+        title: "Kebutuhan air tanaman",
       },
       {
         href: "/rawat-tani/drainase-lahan-tanaman",

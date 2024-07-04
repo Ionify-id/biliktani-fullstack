@@ -122,8 +122,8 @@ export default function FormKalkulatorPupuk() {
                 type="number"
                 id="jumlah-bedeng"
                 name="jumlahBedeng"
-                min="1"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.jumlahBedeng}
@@ -141,8 +141,8 @@ export default function FormKalkulatorPupuk() {
                 type="number"
                 id="panjang-rerata"
                 name="panjang"
-                min="1"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.panjang}
@@ -160,8 +160,8 @@ export default function FormKalkulatorPupuk() {
                 type="number"
                 id="lebar"
                 name="lebar"
-                min="1"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.lebar}

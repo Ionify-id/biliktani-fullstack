@@ -14,10 +14,12 @@ export default function FormPrakiraanWaktuPanen() {
     plantingDate: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [firstHarvestTimes, setFirstHarvestTimes] = useState([]);
-  const [secondHarvestTimes, setSecondHarvestTimes] = useState([]);
 
   const handleChange = (e) => {
+    setIsSubmitted(false);
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -28,6 +30,8 @@ export default function FormPrakiraanWaktuPanen() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    setIsSubmitted(true);
+
     const { plantType, plantCondition, plantingDate } = formData;
     let startDate = new Date(plantingDate);
 
@@ -37,10 +41,8 @@ export default function FormPrakiraanWaktuPanen() {
     );
 
     let firstHarvestDays = selectedCondition.firstHarvest;
-    let secondHarvestDays = selectedCondition.secondHarvest;
 
     let firstHarvestTimesFormatted = [];
-    let secondHarvestTimesFormatted = [];
 
     if (firstHarvestDays.length > 0) {
       firstHarvestTimesFormatted = firstHarvestDays.map((days) =>
@@ -48,24 +50,17 @@ export default function FormPrakiraanWaktuPanen() {
       );
     }
 
-    if (secondHarvestDays.length > 0) {
-      secondHarvestTimesFormatted = secondHarvestDays.map((days) =>
-        calculateHarvestDate(startDate, days)
-      );
-    }
-
     setFirstHarvestTimes(firstHarvestTimesFormatted);
-    setSecondHarvestTimes(secondHarvestTimesFormatted);
   }
 
   function handleReset() {
+    setIsSubmitted(false);
     setFormData({
       plantType: "",
       plantCondition: "",
       plantingDate: "",
     });
     setFirstHarvestTimes([]);
-    setSecondHarvestTimes([]);
   }
 
   return (
@@ -149,30 +144,9 @@ export default function FormPrakiraanWaktuPanen() {
         <label className="text-left mb-2 font-medium">
           Prakiraan Waktu Panen
         </label>
-        {firstHarvestTimes.length > 0 ? (
-          firstHarvestTimes.map((time, index) => (
-            <input
-              key={index}
-              type="text"
-              className="w-full p-2 my-2 border border-gray-300 bg-gray-200 rounded-md"
-              value={time}
-              readOnly
-            />
-          ))
-        ) : (
-          <input
-            type="text"
-            className="w-full p-2 my-2 border border-gray-300 bg-gray-200 rounded-md"
-            value="0"
-            readOnly
-          />
-        )}
-        {secondHarvestTimes.length > 0 && (
+        {isSubmitted && firstHarvestTimes.length > 0 ? (
           <>
-            <label className="text-left my-2 font-medium">
-              Prakiraan Waktu Panen Kedua
-            </label>
-            {secondHarvestTimes.map((time, index) => (
+            {firstHarvestTimes.map((time, index) => (
               <input
                 key={index}
                 type="text"
@@ -181,8 +155,29 @@ export default function FormPrakiraanWaktuPanen() {
                 readOnly
               />
             ))}
+            {formData.plantType === "Kemangi" && (
+              <div>
+                <label className="text-left mb-2 font-medium">
+                  Prakiraan Waktu Panen Kedua dan Seterusnya
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 my-2 border border-gray-300 bg-gray-200 rounded-md"
+                  value="± 23 hari setelah panen pertama"
+                  readOnly
+                />
+              </div>
+            )}
           </>
+        ) : (
+          <input
+            type="text"
+            className="w-full p-2 my-2 border border-gray-300 bg-gray-200 rounded-md"
+            value="0"
+            readOnly
+          />
         )}
+
         <div className="flex items-center">
           <Button
             type="button"

@@ -12,7 +12,6 @@ import { Button } from "../ui/button";
 export default function FormPrakiraanProduktivitasTanaman() {
   const [formData, setFormData] = useState({
     pilihanTanaman: "",
-    luasLahan: 0,
     jumlahBedeng: 0,
     panjangRerata: 0,
     lebar: 0,
@@ -35,14 +34,8 @@ export default function FormPrakiraanProduktivitasTanaman() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const {
-      pilihanTanaman,
-      luasLahan,
-      jumlahBedeng,
-      panjangRerata,
-      lebar,
-      jarakTanaman,
-    } = formData;
+    const { pilihanTanaman, jumlahBedeng, panjangRerata, lebar, jarakTanaman } =
+      formData;
 
     const rendemen = plant.find((p) => p.name === pilihanTanaman).rendemen;
 
@@ -63,7 +56,6 @@ export default function FormPrakiraanProduktivitasTanaman() {
   function handleReset() {
     setFormData({
       pilihanTanaman: "",
-      luasLahan: 0,
       jumlahBedeng: 0,
       panjangRerata: 0,
       lebar: 0,
@@ -102,28 +94,6 @@ export default function FormPrakiraanProduktivitasTanaman() {
               ))}
             </select>
           </div>
-          <div className="grid grid-cols-1">
-            <div>
-              <label
-                htmlFor="luas-lahan"
-                className="block text-left mb-2 font-medium"
-              >
-                Luas Lahan
-              </label>
-              <input
-                type="number"
-                id="luas-lahan"
-                name="luasLahan"
-                min="1"
-                max="100"
-                step="1"
-                required
-                className="w-full p-2 border border-gray-300 rounded-md"
-                value={formData.luasLahan}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
           <div className="grid grid-cols-3 gap-4">
             <div>
               <label
@@ -136,9 +106,8 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 type="number"
                 id="jumlah-bedeng"
                 name="jumlahBedeng"
-                min="1"
-                max="100"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.jumlahBedeng}
@@ -156,9 +125,8 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 type="number"
                 id="panjang-rerata"
                 name="panjangRerata"
-                min="1"
-                max="100"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.panjangRerata}
@@ -176,9 +144,8 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 type="number"
                 id="lebar"
                 name="lebar"
-                min="1"
-                max="100"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.lebar}
@@ -198,9 +165,8 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 type="number"
                 id="jarak-tanaman"
                 name="jarakTanaman"
-                min="1"
-                max="100"
-                step="1"
+                min="0"
+                step="0.01"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={formData.jarakTanaman}

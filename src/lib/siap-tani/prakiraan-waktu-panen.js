@@ -44,17 +44,17 @@ const plant = [
     condition: [
       {
         plantCondition: "Kurang Air",
-        firstHarvest: [28, 29],
+        firstHarvest: [44, 45],
         secondHarvest: [53, 54],
       },
       {
         plantCondition: "Cukup Air",
-        firstHarvest: [26, 27],
+        firstHarvest: [39, 40],
         secondHarvest: [51, 52],
       },
       {
         plantCondition: "Air Berlebih",
-        firstHarvest: [30, 31],
+        firstHarvest: [46, 47],
         secondHarvest: [55, 56],
       },
     ],
@@ -62,7 +62,12 @@ const plant = [
 ];
 
 function formatDateToIndonesian(date) {
-  const options = { day: "numeric", month: "long", year: "numeric" };
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
   return date.toLocaleDateString("id-ID", options);
 }
 
