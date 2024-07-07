@@ -1,12 +1,12 @@
 import React from "react";
 import "@/app/globals.css";
 
-export default function ProfilePage() {
+export default function RegisterPage() {
   return (
     <main>
       <div className="container my-5">
-        <p className="text-2xl font-bold">Profile</p>
-        <p>Ubah data pribadi Anda dan klik simpan</p>
+        <p className="text-2xl font-bold">Daftar Akun Bilik Tani</p>
+        <p>Silakan masukkan data berikut untuk mendaftar akun!</p>
 
         <form className="mt-5">
             <div className="grid grid-cols-2 gap-5">
@@ -83,7 +83,7 @@ export default function ProfilePage() {
                     <input type="password" placeholder="Masukkan kata sandi untuk akun" className="p-1 border border-gray-300 rounded-md" required/>
                 </div>
 
-                <button type="submit" className="mt-5 bg-emerald-800 text-white rounded-xl w-full hover:bg-emerald-700">Simpan</button>
+                <button type="submit" className="mt-5 bg-emerald-800 text-white rounded-xl w-full hover:bg-emerald-700">Daftar</button>
             </div>
 
             
