@@ -1,7 +1,6 @@
 import { dbConnect } from '../../../utils/database';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 const { isAuthenticated } = require('./login');
 
 const handler = async (req, res) => {
@@ -25,6 +24,14 @@ const handler = async (req, res) => {
       produktivitas: req.body.produktivitas,
       cara_pemasaran: req.body.cara_pemasaran,
     };
+    //check is there any user with the same phone number
+    const user = await db.collection('users').findOne({ no_telepon: req.body.no_telepon });
+    if (user) {
+      res.status(400).json({ message: 'Nomor telepon sudah terdaftar!' });
+      client.close();
+      return;
+    }
+    
     const result = await db.collection('users').insertOne(newUser);
     res.status(201).json({
       data: result,
