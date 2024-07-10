@@ -9,6 +9,8 @@ import BinaTaniIcon from "@/assets/nav-icon/icon-bina-tani.png";
 import ActiveBinaTaniIcon from "@/assets/nav-icon/icon-bina-tani-active.png";
 import CatatanIcon from "@/assets/nav-icon/icon-catatan.png";
 import ActiveCatatanIcon from "@/assets/nav-icon/icon-catatan-active.png";
+import JadwalTaniIcon from "@/assets/nav-icon/icon-jadwal-tani.png";
+import ActiveJadwalTaniIcon from "@/assets/nav-icon/icon-jadwal-tani-active.png";
 
 // icon pelaksana
 import DikbudIcon from "@/assets/pelaksana-icon/icon-dikbud.png";
@@ -87,15 +89,24 @@ const navMenu = [
       startPath: "/bina-tani",
     },
   },
-  // {
-  //   mainMenu: {
-  //     image: CatatanIcon,
-  //     imageActive: ActiveCatatanIcon,
-  //     altImage: "catatan menu icon",
-  //     title: "Catatan",
-  //     startPath: "/catatan",
-  //   },
-  // },
+  {
+    mainMenu: {
+      image: CatatanIcon,
+      imageActive: ActiveCatatanIcon,
+      altImage: "catatan menu icon",
+      title: "Catatan",
+      startPath: "/catatan",
+    },
+  },
+  {
+    mainMenu: {
+      image: JadwalTaniIcon,
+      imageActive: ActiveJadwalTaniIcon,
+      altImage: "jadwal tani menu icon",
+      title: "Jadwal tani",
+      startPath: "/jadwal-tani",
+    },
+  },
 ];
 
 const pelaksanaData = [

@@ -10,7 +10,7 @@ import IconWhatsapp from "@/assets/bina-tani/whatsapp.png";
 
 export default function BinaTaniPage() {
   return (
-    <main className="container overflow-y-auto max-h-screen">
+    <div className="container overflow-y-auto max-h-screen">
       <div className="container">
         <>
           <div className="container mx-auto mt-8 p-4 border-2 rounded-lg border-gray-150">
@@ -111,6 +111,6 @@ export default function BinaTaniPage() {
           </ul>
         </>
       </div>
-    </main>
+    </div>
   );
 }

@@ -12,9 +12,6 @@ export default function DetailHamaModal() {
   const router = useRouter();
   const detailHama = getDetailHama(slug);
 
-  function close() {
-    return router.back();
-  }
   return (
     <Modal>
       <div className="flex flex-col space-y-4 justify-center items-center">
@@ -25,7 +22,8 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Tanaman yang Bisa Terkena</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.tanamanTerkena.length > 3 && "grid-cols-2 gap-1"
+                  detailHama.tanamanTerkena.length > 3 &&
+                  "grid-cols-2 gap-y-1 gap-x-8"
                 }`}
               >
                 {detailHama.tanamanTerkena.map((tanaman, index) => (
@@ -39,7 +37,8 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Ciri-ciri Tanaman Terkena</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.ciriTanaman.length > 3 && "grid-cols-2 gap-1"
+                  detailHama.ciriTanaman.length > 3 &&
+                  "grid-cols-2 gap-y-1 gap-x-8"
                 }`}
               >
                 {detailHama.ciriTanaman.map((ciri, index) => (
@@ -53,7 +52,8 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Pencegahan</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.caraPencegahan.length > 3 && "grid-cols-2 gap-1"
+                  detailHama.caraPencegahan.length > 3 &&
+                  "grid-cols-2 gap-y-1 gap-x-8"
                 }`}
               >
                 {detailHama.caraPencegahan.map((pencegahan, index) => (
@@ -67,7 +67,8 @@ export default function DetailHamaModal() {
               <h2 className="text-lg font-bold">Penanganan</h2>
               <ul
                 className={`list-disc pl-5 grid ${
-                  detailHama.penanganan.length > 3 && "grid-cols-2 gap-1"
+                  detailHama.penanganan.length > 3 &&
+                  "grid-cols-2 gap-y-1 gap-x-8"
                 }`}
               >
                 {detailHama.penanganan.map((penanganan, index) => (
@@ -82,7 +83,7 @@ export default function DetailHamaModal() {
         <Button
           variant="outline"
           className="border-2 border-emerald-800 w-1/4 rounded-xl text-emerald-800 hover:bg-emerald-800/10"
-          onClick={close}
+          onClick={() => router.back()}
         >
           Tutup
         </Button>

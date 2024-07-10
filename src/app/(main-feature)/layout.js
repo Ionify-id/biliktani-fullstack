@@ -14,10 +14,12 @@ export const metadata = {
 export default function RootLayout({ children, modal }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex items-start justify-between`}>
+      <body
+        className={`${inter.className} flex flex-row items-start justify-between`}
+      >
         <>
           <LeftSidebar />
-          <main className="flex-grow w-full h-full">{children}</main>
+          <main className="w-full h-full">{children}</main>
           <RightSidebar />
         </>
         {modal}

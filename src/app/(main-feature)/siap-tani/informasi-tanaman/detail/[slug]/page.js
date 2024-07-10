@@ -18,7 +18,7 @@ export default function DetailTanamanPage() {
     ));
 
   return (
-    <main className="overflow-y-auto max-h-screen">
+    <div className="overflow-y-auto max-h-screen">
       <div className="container flex flex-col space-y-4 my-8">
         {/* Judul */}
         <div className="container flex flex-col mx-auto p-4 border-2 rounded-lg border-gray-150">
@@ -172,6 +172,6 @@ export default function DetailTanamanPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

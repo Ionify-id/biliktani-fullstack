@@ -3,7 +3,7 @@ import FormPrakiraanProduktivitasTanaman from "@/components/form/form-prakiraan-
 
 export default function PrakiraanProduktivitasTanamanPage() {
   return (
-    <main>
+    <div>
       <div className="container">
         <div className="container mx-auto my-8 p-4 border-2 rounded-lg border-gray-150">
           <h1 className="text-2xl font-bold text-[#0B6653]">
@@ -20,6 +20,6 @@ export default function PrakiraanProduktivitasTanamanPage() {
         </p>
         <FormPrakiraanProduktivitasTanaman />
       </div>
-    </main>
+    </div>
   );
 }

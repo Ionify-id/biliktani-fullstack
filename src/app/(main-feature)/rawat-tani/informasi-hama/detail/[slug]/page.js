@@ -8,7 +8,7 @@ export default function DetailHamaPage() {
   const detailHama = getDetailHama(slug);
 
   return (
-    <main className="h-screen flex flex-col justify-center items-center">
+    <div className="h-screen flex flex-col justify-center items-center">
       <div className="container flex flex-col border-2 rounded-xl border-black w-9/12 p-8 bg-white">
         <div>
           <h1 className="my-4 text-4xl font-bold">{detailHama.nama}</h1>
@@ -72,6 +72,6 @@ export default function DetailHamaPage() {
           </ul>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
