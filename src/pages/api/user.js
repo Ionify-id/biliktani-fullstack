@@ -27,11 +27,17 @@ const handler = async (req, res) => {
     //check is there any user with the same phone number
     const user = await db.collection('users').findOne({ no_telepon: req.body.no_telepon });
     if (user) {
-      res.status(400).json({ message: 'Nomor telepon sudah terdaftar!' });
+      res.status(400).json({ 
+        data: [],
+        meta:{
+          code:400,
+          message: 'Nomor telepon sudah terdaftar!' 
+        }
+      });
       client.close();
       return;
     }
-    
+
     const result = await db.collection('users').insertOne(newUser);
     res.status(201).json({
       data: result,
