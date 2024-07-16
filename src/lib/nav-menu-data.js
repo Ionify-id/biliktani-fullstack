@@ -123,7 +123,7 @@ function getNavMenuAuthenticated() {
 }
 
 function getNavMenuUnauthenticated() {
-  return navMenu.slice(3);
+  return navMenu.slice(0, 4);
 }
 
 export { pelaksanaData, getNavMenuAuthenticated, getNavMenuUnauthenticated };
