@@ -19,8 +19,8 @@ function LoginButton() {
 
 export default function RightSidebar() {
   const cookie = new Cookies();
-  const token = cookie.get("token");
-  const isAuthenticated = token !== null;
+  const token = cookie.get("token") || "";
+  const isAuthenticated = token !== "";
   return (
     <aside className="sticky top-0 flex flex-col border border-l-1 border-gray-300 w-[400px] h-screen p-4">
       <div className="flex flex-col w-full justify-items-center space-y-4">

@@ -15,9 +15,10 @@ import Cookies from "universal-cookie";
 
 export default function NavBar() {
   const cookie = new Cookies();
-  const token = cookie.get("token");
+  const token = cookie.get("token") || "";
+  console.log(token);
   const navMenu =
-    token !== null ? getNavMenuAuthenticated() : getNavMenuUnauthenticated();
+    token !== "" ? getNavMenuAuthenticated() : getNavMenuUnauthenticated();
   return (
     <nav className="w-full mt-8">
       <ul className="flex flex-col space-y-2">
