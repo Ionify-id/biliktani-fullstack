@@ -1,10 +1,49 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import "@/app/globals.css";
 import Image from "next/image";
 import loginImage from "@/assets/login.png";
 import Link from "next/link";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const { toast } = useToast();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
+    setLoading(true);
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+    const requestBody = {
+      no_telepon: Number(data.no_telepon),
+      kata_sandi: data.kata_sandi,
+    };
+
+    try {
+      const response = await axios.post("/api/login", requestBody);
+      console.log("response", response.data.meta.message);
+      toast({
+        description: response.data.meta.message,
+        className: "rounded-lg border-2 border-emerald-700 p-4",
+      });
+      localStorage.setItem("token", response.data.data);
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
+    } catch (error) {
+      toast({
+        description: error.response.data.message,
+        className: "rounded-lg border-2 border-red-700 p-4",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <main className="flex h-screen overflow-hidden">
       <div className="flex w-full">
@@ -13,6 +52,7 @@ export default function LoginPage() {
             src={loginImage}
             alt="Login Image"
             className="w-full h-full object-cover"
+            priority
           />
         </div>
         <div className="flex flex-col justify-center items-center w-1/2 bg-white p-4">
@@ -23,12 +63,18 @@ export default function LoginPage() {
             Silakan masukkan <span className="font-bold">No. telepon</span> dan{" "}
             <span className="font-bold">Kata sandi</span> anda untuk memulai!
           </p>
-          <form className="flex flex-col w-full max-w-md">
+          <form
+            className="flex flex-col w-full max-w-md"
+            onSubmit={handleSubmit}
+          >
             <label htmlFor="phone" className="mb-2 font-bold">
               No. Telepon
             </label>
             <input
-              type="text"
+              type="number"
+              id="no_telepon"
+              name="no_telepon"
+              maxLength="12"
               placeholder="Masukkan No. Telepon yang terdaftar"
               className="mb-2 p-2 border border-gray-300 rounded"
               required
@@ -39,6 +85,8 @@ export default function LoginPage() {
             </label>
             <input
               type="password"
+              id="kata_sandi"
+              name="kata_sandi"
               placeholder="Masukkan kata sandi"
               className="mb-2 p-2 border border-gray-300 rounded"
               required
@@ -48,7 +96,7 @@ export default function LoginPage() {
               type="submit"
               className="mt-3 bg-emerald-800 hover:bg-emerald-700 text-white p-2 rounded"
             >
-              Masuk
+              {loading ? "Loading..." : "Masuk"}
             </button>
           </form>
           <p className="mt-5">

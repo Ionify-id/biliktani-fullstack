@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "../ui/button";
 import UserInfo from "./user-info";
@@ -15,14 +17,11 @@ function LoginButton() {
 }
 
 export default function RightSidebar() {
-  const user = {
-    name: "Marijan",
-    isLogin: true,
-  };
+  const isAuthenticated = localStorage.getItem("token") !== null;
   return (
     <aside className="sticky top-0 flex flex-col border border-l-1 border-gray-300 w-[400px] h-screen p-4">
       <div className="flex flex-col w-full justify-items-center space-y-4">
-        {user.isLogin ? <UserInfo user={user} /> : <LoginButton />}
+        {isAuthenticated ? <UserInfo name="marijan" /> : <LoginButton />}
         <WeatherInfo />
         <ModulDownloader />
       </div>

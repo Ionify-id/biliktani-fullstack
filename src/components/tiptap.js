@@ -21,7 +21,6 @@ export default function TipTap({ onChange, content }) {
     content: content,
     onUpdate: ({ editor }) => {
       handleChange(editor.getHTML());
-      console.log(content);
     },
   });
 

@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import LeftSidebar from "@/components/sidebar/left-sidebar";
 import RightSidebar from "@/components/sidebar/right-sidebar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children, modal }) {
           <LeftSidebar />
           <main className="w-full h-full">{children}</main>
           <RightSidebar />
+          <Toaster />
         </>
         {modal}
       </body>

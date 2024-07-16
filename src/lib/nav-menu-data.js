@@ -118,4 +118,12 @@ const pelaksanaData = [
   { image: AgritechIcon, alt: "agritech icon" },
 ];
 
-export { navMenu, pelaksanaData };
+function getNavMenuAuthenticated() {
+  return navMenu;
+}
+
+function getNavMenuUnauthenticated() {
+  return navMenu.slice(3);
+}
+
+export { pelaksanaData, getNavMenuAuthenticated, getNavMenuUnauthenticated };

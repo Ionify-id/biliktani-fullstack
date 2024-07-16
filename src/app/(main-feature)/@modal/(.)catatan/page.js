@@ -13,6 +13,11 @@ export default function CatatanModal() {
   const [content, setContent] = useState("");
   const handleContentChange = (reason) => setContent(reason);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(content);
+  }
+
   function close(e) {
     e.preventDefault();
     router.back();
@@ -21,7 +26,10 @@ export default function CatatanModal() {
   return (
     <Modal>
       <div className="min-w-[600px] max-w-[840px] min-h-[480px] max-h-[600px]">
-        <form className="flex flex-col space-y-4 w-full h-full my-auto">
+        <form
+          className="flex flex-col space-y-4 w-full h-full my-auto"
+          onSubmit={handleSubmit}
+        >
           <h1 className="font-bold text-xl">Catatan</h1>
           <TipTap
             content={content}
@@ -35,7 +43,10 @@ export default function CatatanModal() {
             >
               Tutup
             </Button>
-            <Button className="bg-emerald-700 rounded-xl text-white hover:bg-emerald-800">
+            <Button
+              className="bg-emerald-700 rounded-xl text-white hover:bg-emerald-800"
+              type="submit"
+            >
               Simpan
             </Button>
           </div>

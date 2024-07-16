@@ -1,14 +1,54 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import "@/app/globals.css";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const { toast } = useToast();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   async function handleSubmit(event) {
+    setLoading(true);
+
     event.preventDefault();
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
-    console.log(data);
+    const requestBody = {
+      nama_lengkap: data.nama_lengkap,
+      no_telepon: Number(data.no_telepon),
+      alamat: data.alamat,
+      dusun: data.dusun,
+      rt: Number(data.rt),
+      rw: Number(data.rw),
+      kelompok_tani: data.kelompok_tani,
+      kata_sandi: data.kata_sandi,
+      lokasi_lahan: data.lokasi_lahan,
+      luas_lahan: Number(data.luas_lahan),
+      jenis_komoditas: data.jenis_komoditas,
+      produktivitas: Number(data.produktivitas),
+      cara_pemasaran: data.cara_pemasaran,
+    };
+
+    try {
+      const response = await axios.post("/api/user", requestBody);
+      console.log(response.data.meta.message);
+      toast({
+        description: response.data.meta.message,
+        className: "rounded-lg border-2 border-emerald-700 p-4",
+      });
+      router.push("/login");
+    } catch (error) {
+      toast({
+        description: error.response.data.meta.message,
+        className: "rounded-lg border-2 border-red-700 p-4",
+      });
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -197,7 +237,7 @@ export default function RegisterPage() {
               type="submit"
               className="mt-5 bg-emerald-800 text-white rounded-xl w-full hover:bg-emerald-700"
             >
-              Daftar
+              {loading ? "Loading..." : "Daftar"}
             </button>
           </div>
         </form>
