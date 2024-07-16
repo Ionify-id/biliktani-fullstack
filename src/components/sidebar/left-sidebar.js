@@ -4,6 +4,7 @@ import NavBar from "@/components/navigation/nav-bar";
 
 import BilikTaniIcon from "@/assets/bilik-tani.png";
 import { pelaksanaData } from "@/lib/nav-menu-data";
+import { Suspense } from "react";
 
 export default function LeftSidebar() {
   return (
@@ -19,7 +20,9 @@ export default function LeftSidebar() {
         </p>
       </div>
       <div className="flex-1 overflow-y-auto">
-        <NavBar />
+        <Suspense>
+          <NavBar />
+        </Suspense>
       </div>
       <div className="justify-end">
         <p className="font-bold text-lg">Pelaksana:</p>

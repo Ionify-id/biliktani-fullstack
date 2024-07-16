@@ -19,7 +19,7 @@ export default function RegisterPage() {
     const data = Object.fromEntries(fd.entries());
     const requestBody = {
       nama_lengkap: data.nama_lengkap,
-      no_telepon: Number(data.no_telepon),
+      no_telepon: data.no_telepon,
       alamat: data.alamat,
       dusun: data.dusun,
       rt: Number(data.rt),

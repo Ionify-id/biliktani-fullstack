@@ -22,18 +22,18 @@ export default function LoginPage() {
     const fd = new FormData(e.target);
     const data = Object.fromEntries(fd.entries());
     const requestBody = {
-      no_telepon: Number(data.no_telepon),
+      no_telepon: data.no_telepon,
       kata_sandi: data.kata_sandi,
     };
 
     try {
       const response = await axios.post("/api/login", requestBody);
-      console.log("response", response.data.meta.message);
       toast({
         description: response.data.meta.message,
         className: "rounded-lg border-2 border-emerald-700 p-4",
       });
-      cookies.set("token", response.data.data, { path: "/" });
+      cookies.set("token", response.data.data.token, { path: "/" });
+      cookies.set("name", response.data.data.nama_lengkap, { path: "/" });
       setTimeout(() => {
         router.push("/");
       }, 1000);

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 
@@ -14,11 +14,19 @@ import {
 import Cookies from "universal-cookie";
 
 export default function NavBar() {
-  const cookie = new Cookies();
-  const token = cookie.get("token") || "";
-  console.log(token);
-  const navMenu =
-    token !== "" ? getNavMenuAuthenticated() : getNavMenuUnauthenticated();
+  const [navMenu, setNavMenu] = useState([]);
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    const tokenFromCookies = cookies.get("token") || "";
+
+    const menu =
+      tokenFromCookies !== ""
+        ? getNavMenuAuthenticated()
+        : getNavMenuUnauthenticated();
+    setNavMenu(menu);
+  }, []);
+
   return (
     <nav className="w-full mt-8">
       <ul className="flex flex-col space-y-2">

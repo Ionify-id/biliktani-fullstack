@@ -1,24 +1,34 @@
+"use client";
+
+import { useLayoutEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import Cookies from "universal-cookie";
+import { useToast } from "@/components/ui/use-toast";
 import { ChevronDown, UserRound } from "lucide-react";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
+  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useRouter } from "next/navigation";
-import { useToast } from "../ui/use-toast";
-import Cookies from "universal-cookie";
 
-export default function UserInfo({ name }) {
+export default function UserInfo({}) {
   const router = useRouter();
   const { toast } = useToast();
-  const cookie = new Cookies();
+  const [name, setName] = useState("");
+
+  useLayoutEffect(() => {
+    const cookies = new Cookies();
+    const nameFromCookies = cookies.get("name") || "";
+    setName(nameFromCookies);
+  }, []);
 
   function handleLogout() {
-    cookie.remove("token");
+    const cookies = new Cookies();
+    cookies.remove("token");
     toast({
       description: "Berhasil logout",
       className: "rounded-lg border-2 border-emerald-700 p-4",
@@ -27,6 +37,7 @@ export default function UserInfo({ name }) {
       router.push("/login");
     }, 2000);
   }
+
   return (
     <div className="group w-full flex flex-row items-center bg-emerald-800 p-2 rounded-xl text-white relative hover:font-bold transition-all">
       <div className="flex flex-row flex-grow items-center space-x-2">
