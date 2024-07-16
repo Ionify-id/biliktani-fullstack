@@ -25,7 +25,10 @@ const handler = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1y' });
     res.status(201).json({
-        data: token,
+        data: {
+          token,
+          nama_lengkap: user.nama_lengkap,
+        },
         meta:{
           code:200,
           message: 'Login berhasil!',
