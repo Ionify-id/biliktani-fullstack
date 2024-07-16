@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import UserInfo from "./user-info";
 import WeatherInfo from "./weather-info";
 import ModulDownloader from "./modul-downloader";
+import Cookies from "universal-cookie";
 
 function LoginButton() {
   return (
@@ -17,7 +18,9 @@ function LoginButton() {
 }
 
 export default function RightSidebar() {
-  const isAuthenticated = localStorage.getItem("token") !== null;
+  const cookie = new Cookies();
+  const token = cookie.get("token");
+  const isAuthenticated = token !== null;
   return (
     <aside className="sticky top-0 flex flex-col border border-l-1 border-gray-300 w-[400px] h-screen p-4">
       <div className="flex flex-col w-full justify-items-center space-y-4">

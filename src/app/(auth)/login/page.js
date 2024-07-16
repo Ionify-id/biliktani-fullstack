@@ -8,10 +8,12 @@ import Link from "next/link";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import Cookies from "universal-cookie";
 
 export default function LoginPage() {
   const { toast } = useToast();
   const router = useRouter();
+  const cookies = new Cookies();
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
@@ -31,7 +33,7 @@ export default function LoginPage() {
         description: response.data.meta.message,
         className: "rounded-lg border-2 border-emerald-700 p-4",
       });
-      localStorage.setItem("token", response.data.data);
+      cookies.set("token", response.data.data, { path: "/" });
       setTimeout(() => {
         router.push("/");
       }, 1000);

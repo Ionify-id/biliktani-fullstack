@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { fiturBilikTani } from "@/lib/data-informasi/home";
 import Image from "next/image";
+import Cookies from "universal-cookie";
 
 export default function HomePage() {
   return (

@@ -10,13 +10,15 @@ import {
 } from "../ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useToast } from "../ui/use-toast";
+import Cookies from "universal-cookie";
 
 export default function UserInfo({ name }) {
   const router = useRouter();
   const { toast } = useToast();
+  const cookie = new Cookies();
 
   function handleLogout() {
-    localStorage.clear();
+    cookie.remove("token");
     toast({
       description: "Berhasil logout",
       className: "rounded-lg border-2 border-emerald-700 p-4",
