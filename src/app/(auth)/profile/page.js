@@ -1,10 +1,23 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "@/app/globals.css";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
-  const [formData, setFormData] = useState({
+  const cookie = new Cookies();
+  const token = cookie.get("token");
+
+  const { toast } = useToast();
+  const router = useRouter();
+
+  const [submissionLoading, setSubmissionLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [profileData, setProfileData] = useState({
     nama_lengkap: "",
     lokasi_lahan: "",
     no_telepon: "",
@@ -17,33 +30,78 @@ export default function ProfilePage() {
     produktivitas: 0,
     kelompok_tani: "",
     cara_pemasaran: "",
-    kata_sandi: "",
   });
 
-  useEffect(() => {
-    // Fetch data from an API or local storage
-    const fetchData = async () => {
-      // Example: fetching data from an API
-      const data = await fetchUserProfile(); // Replace this with your actual data fetching function
-      setFormData(data);
-    };
-
-    fetchData();
-  }, []);
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const fd = new FormData(event.target);
-    const data = Object.fromEntries(fd.entries());
-    console.log(data);
+  async function getProfile() {
+    setLoading(true);
+    try {
+      const res = await axios.get("/api/user", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setProfileData(res.data.data);
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   }
 
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setProfileData({
+      ...profileData,
       [e.target.name]: e.target.value,
     });
   };
+
+  async function handleSubmit(event) {
+    setSubmissionLoading(true);
+    event.preventDefault();
+    const fd = new FormData(event.target);
+    const data = Object.fromEntries(fd.entries());
+    const requestBody = {
+      nama_lengkap: data.nama_lengkap,
+      no_telepon: data.no_telepon,
+      alamat: data.alamat,
+      dusun: data.dusun,
+      rt: Number(data.rt),
+      rw: Number(data.rw),
+      kelompok_tani: data.kelompok_tani,
+      kata_sandi: data.kata_sandi,
+      lokasi_lahan: data.lokasi_lahan,
+      luas_lahan: Number(data.luas_lahan),
+      jenis_komoditas: data.jenis_komoditas,
+      produktivitas: Number(data.produktivitas),
+      cara_pemasaran: data.cara_pemasaran,
+    };
+
+    try {
+      const response = await axios.put("/api/user", requestBody, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      toast({
+        description: response.data.meta.message,
+        className: "rounded-lg border-2 border-emerald-700 p-4",
+      });
+    } catch (error) {
+      toast({
+        description: error.response.data.meta.message,
+        className: "rounded-lg border-2 border-red-700 p-4",
+      });
+    } finally {
+      setSubmissionLoading(false);
+      cookie.set("name", requestBody.nama_lengkap);
+      router.push("/");
+    }
+  }
 
   return (
     <main>
@@ -51,237 +109,222 @@ export default function ProfilePage() {
         <p className="text-2xl font-bold">Profile</p>
         <p>Ubah data pribadi Anda dan klik simpan</p>
 
-        <form className="mt-5" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-5">
-            <div className="grid grid-cols-1 gap-y-2">
-              <label htmlFor="name" className="font-bold">
-                Nama Lengkap
-              </label>
-              <input
-                type="text"
-                id="nama_lengkap"
-                name="nama_lengkap"
-                placeholder="Masukkan nama lengkap"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.nama_lengkap}
-                onChange={handleChange}
-              />
-            </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <form className="mt-5" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-y-2">
+                <label htmlFor="name" className="font-bold">
+                  Nama Lengkap
+                </label>
+                <input
+                  type="text"
+                  id="nama_lengkap"
+                  name="nama_lengkap"
+                  placeholder="Masukkan nama lengkap"
+                  className="p-1 border border-gray-300 rounded-md"
+                  value={profileData.nama_lengkap}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Lokasi Lahan</label>
-              <input
-                type="text"
-                id="lokasi_lahan"
-                name="lokasi_lahan"
-                placeholder="Alamat/lokasi lahan"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.lokasi_lahan}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Lokasi Lahan</label>
+                <input
+                  type="text"
+                  id="lokasi_lahan"
+                  name="lokasi_lahan"
+                  placeholder="Alamat/lokasi lahan"
+                  className="p-1 border border-gray-300 rounded-md"
+                  value={profileData.lokasi_lahan}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label htmlFor="telephone" className="font-bold">
-                No. Telepon
-              </label>
-              <input
-                type="number"
-                id="no_telepon"
-                name="no_telepon"
-                placeholder="Masukkan no. telepon"
-                className="p-1 border border-gray-300 rounded-md"
-                min="0"
-                required
-                value={formData.no_telepon}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label htmlFor="telephone" className="font-bold">
+                  No. Telepon
+                </label>
+                <input
+                  type="number"
+                  id="no_telepon"
+                  name="no_telepon"
+                  placeholder="Masukkan no. telepon"
+                  className="p-1 border border-gray-300 rounded-md"
+                  min="0"
+                  value={profileData.no_telepon}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label htmlFor="" className="font-bold">
-                Luas Lahan
-              </label>
-              <input
-                type="number"
-                id="luas_lahan"
-                name="luas_lahan"
-                className="p-1 border border-gray-300 rounded-md"
-                min="0"
-                step="0.01"
-                required
-                value={formData.luas_lahan}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label htmlFor="" className="font-bold">
+                  Luas Lahan
+                </label>
+                <input
+                  type="number"
+                  id="luas_lahan"
+                  name="luas_lahan"
+                  className="p-1 border border-gray-300 rounded-md"
+                  min="0"
+                  step="0.01"
+                  value={profileData.luas_lahan}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Alamat</label>
-              <input
-                type="text"
-                id="alamat"
-                name="alamat"
-                placeholder="Masukkan alamat lengkap"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.alamat}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Alamat</label>
+                <input
+                  type="text"
+                  id="alamat"
+                  name="alamat"
+                  placeholder="Masukkan alamat lengkap"
+                  className="p-1 border border-gray-300 rounded-md"
+                  value={profileData.alamat}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Jenis Komoditas</label>
-              <input
-                type="text"
-                id="jenis_komoditas"
-                name="jenis_komoditas"
-                placeholder="Jenis komoditas yang ditanam"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.jenis_komoditas}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Jenis Komoditas</label>
+                <input
+                  type="text"
+                  id="jenis_komoditas"
+                  name="jenis_komoditas"
+                  placeholder="Jenis komoditas yang ditanam"
+                  className="p-1 border border-gray-300 rounded-md"
+                  value={profileData.jenis_komoditas}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="flex flex-row gap-5">
-              <div className="basis-1/2">
-                <div className="grid grid-cols-1 gap-y-2">
-                  <label className="font-bold">Dusun</label>
-                  <input
-                    type="text"
-                    id="dusun"
-                    name="dusun"
-                    placeholder="Dusun"
-                    className="p-1 border border-gray-300 rounded-md"
-                    required
-                    value={formData.dusun}
-                    onChange={handleChange}
-                  />
+              <div className="flex flex-row gap-5">
+                <div className="basis-1/2">
+                  <div className="grid grid-cols-1 gap-y-2">
+                    <label className="font-bold">Dusun</label>
+                    <input
+                      type="text"
+                      id="dusun"
+                      name="dusun"
+                      placeholder="Dusun"
+                      className="p-1 border border-gray-300 rounded-md"
+                      value={profileData.dusun}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="basis-1/4">
+                  <div className="grid grid-cols-1 gap-y-2">
+                    <label className="font-bold">RT</label>
+                    <input
+                      type="number"
+                      id="rt"
+                      name="rt"
+                      className="p-1 border border-gray-300 rounded-md"
+                      min="1"
+                      value={profileData.rt}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="basis-1/4">
+                  <div className="grid grid-cols-1 gap-y-2">
+                    <label className="font-bold">RW</label>
+                    <input
+                      type="number"
+                      id="rw"
+                      name="rw"
+                      className="p-1 border border-gray-300 rounded-md"
+                      min="1"
+                      value={profileData.rw}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="basis-1/4">
-                <div className="grid grid-cols-1 gap-y-2">
-                  <label className="font-bold">RT</label>
-                  <input
-                    type="number"
-                    id="rt"
-                    name="rt"
-                    className="p-1 border border-gray-300 rounded-md"
-                    min="1"
-                    required
-                    value={formData.rt}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Produktivitas</label>
+                <input
+                  type="number"
+                  id="produktivitas"
+                  name="produktivitas"
+                  placeholder="Produktivitas panen lahan per masa tanam"
+                  className="p-1 border border-gray-300 rounded-md"
+                  min="0"
+                  step="0.01"
+                  value={profileData.produktivitas}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
-              <div className="basis-1/4">
-                <div className="grid grid-cols-1 gap-y-2">
-                  <label className="font-bold">RW</label>
-                  <input
-                    type="number"
-                    id="rw"
-                    name="rw"
-                    className="p-1 border border-gray-300 rounded-md"
-                    min="1"
-                    required
-                    value={formData.rw}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Kelompok Tani</label>
+                <input
+                  type="text"
+                  id="kelompok_tani"
+                  name="kelompok_tani"
+                  placeholder="Masukkan kelompok tani yang diikuti"
+                  className="p-1 border border-gray-300 rounded-md"
+                  value={profileData.kelompok_tani}
+                  onChange={handleChange}
+                  required
+                />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Produktivitas</label>
-              <input
-                type="number"
-                id="produktivitas"
-                name="produktivitas"
-                placeholder="Produktivitas panen lahan per masa tanam"
-                className="p-1 border border-gray-300 rounded-md"
-                min="0"
-                step="0.01"
-                required
-                value={formData.produktivitas}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Cara Pemasaran</label>
+                <input
+                  type="text"
+                  id="cara_pemasaran"
+                  name="cara_pemasaran"
+                  placeholder="Masukkan cara pemasaran"
+                  className="p-1 border border-gray-300 rounded-md"
+                  value={profileData.cara_pemasaran}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Kelompok Tani</label>
-              <input
-                type="text"
-                id="kelompok_tani"
-                name="kelompok_tani"
-                placeholder="Masukkan kelompok tani yang diikuti"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.kelompok_tani}
-                onChange={handleChange}
-              />
-            </div>
+              <div className="grid grid-cols-1 gap-y-2">
+                <label className="font-bold">Kata Sandi</label>
+                <input
+                  type="password"
+                  id="kata_sandi"
+                  name="kata_sandi"
+                  placeholder="Masukkan kata sandi untuk akun"
+                  className="p-1 border border-gray-300 rounded-md"
+                  required
+                />
+                <p className="text-sm text-red-700">
+                  Isikan kata sandi lama anda atau ubah kata sandi.
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Cara Pemasaran</label>
-              <input
-                type="text"
-                id="cara_pemasaran"
-                name="cara_pemasaran"
-                placeholder="Masukkan cara pemasaran"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.cara_pemasaran}
-                onChange={handleChange}
-              />
+              <button
+                type="submit"
+                className="mt-5 bg-emerald-800 text-white rounded-xl w-full h-1/2 hover:bg-emerald-700"
+              >
+                {submissionLoading ? "Loading..." : "Simpan"}
+              </button>
             </div>
-
-            <div className="grid grid-cols-1 gap-y-2">
-              <label className="font-bold">Kata Sandi</label>
-              <input
-                type="password"
-                id="kata_sandi"
-                name="kata_sandi"
-                placeholder="Masukkan kata sandi untuk akun"
-                className="p-1 border border-gray-300 rounded-md"
-                required
-                value={formData.kata_sandi}
-                onChange={handleChange}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-5 bg-emerald-800 text-white rounded-xl w-full hover:bg-emerald-700"
-            >
-              Simpan
-            </button>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </main>
   );
-}
-
-// Example function to fetch user profile data
-async function fetchUserProfile() {
-  // Replace with your actual data fetching logic
-  return {
-    nama_lengkap: "John Doe",
-    lokasi_lahan: "Jakarta",
-    no_telepon: "08123456789",
-    luas_lahan: "10",
-    alamat: "Jl. Mawar No. 123",
-    jenis_komoditas: "Padi",
-    dusun: "Dusun 1",
-    rt: "5",
-    rw: "2",
-    produktivitas: "1000",
-    kelompok_tani: "Kelompok Tani Sejahtera",
-    cara_pemasaran: "Jual Langsung",
-    kata_sandi: "",
-  };
 }

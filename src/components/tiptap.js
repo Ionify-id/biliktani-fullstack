@@ -20,7 +20,7 @@ export default function TipTap({ onChange, content }) {
     },
     content: content,
     onUpdate: ({ editor }) => {
-      handleChange(editor.getHTML());
+      handleChange(editor.getHTML()); // Menggunakan getHTML untuk mengambil konten dalam format HTML
     },
   });
 
@@ -35,7 +35,7 @@ export default function TipTap({ onChange, content }) {
           wordBreak: "break-all",
         }}
         editor={editor}
-        content={content}
+        content={content} // Memastikan EditorContent menggunakan prop content
       />
     </div>
   );

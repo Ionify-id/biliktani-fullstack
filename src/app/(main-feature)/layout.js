@@ -22,9 +22,9 @@ export default function RootLayout({ children, modal }) {
           <LeftSidebar />
           <main className="w-full h-full">{children}</main>
           <RightSidebar />
-          <Toaster />
         </>
         {modal}
+        <Toaster />
       </body>
     </html>
   );

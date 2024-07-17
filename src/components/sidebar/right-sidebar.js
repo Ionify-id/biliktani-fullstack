@@ -5,6 +5,7 @@ import UserInfo from "./user-info";
 import WeatherInfo from "./weather-info";
 import ModulDownloader from "./modul-downloader";
 import Cookies from "universal-cookie";
+import LoginButton from "./login-button";
 
 export default function RightSidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

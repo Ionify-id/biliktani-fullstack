@@ -40,13 +40,13 @@ export default function RegisterPage() {
         description: response.data.meta.message,
         className: "rounded-lg border-2 border-emerald-700 p-4",
       });
-      router.push("/login");
     } catch (error) {
       toast({
         description: error.response.data.meta.message,
         className: "rounded-lg border-2 border-red-700 p-4",
       });
     } finally {
+      router.push("/login");
       setLoading(false);
     }
   }
