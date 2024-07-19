@@ -135,7 +135,7 @@ export default function FormKalkulatorPupuk() {
                 htmlFor="panjang-rerata"
                 className="block text-left mb-2 font-medium"
               >
-                Panjang
+                Panjang (m)
               </label>
               <input
                 type="number"

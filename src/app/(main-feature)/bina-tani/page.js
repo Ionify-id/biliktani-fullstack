@@ -10,8 +10,8 @@ import IconWhatsapp from "@/assets/bina-tani/whatsapp.png";
 
 export default function BinaTaniPage() {
   return (
-    <div className="container overflow-y-auto max-h-screen">
-      <div className="container">
+    <div className=" max-h-screen overflow-y-auto">
+      <div className="container ">
         <>
           <div className="container mx-auto mt-8 p-4 border-2 rounded-lg border-gray-150">
             <h1 className="text-2xl font-bold text-[#0B6653]">Klinik Tani</h1>

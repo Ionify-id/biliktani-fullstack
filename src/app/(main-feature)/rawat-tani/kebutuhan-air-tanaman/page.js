@@ -72,13 +72,18 @@ export default function KebutuhanAirTanamanPage() {
     <div>
       <div className="container">
         <div className="container mx-auto my-8 p-4 border-2 rounded-lg border-gray-150">
-          <h1 className="text-2xl font-bold text-[#0B6653]">Kebutuhan Irigasi</h1>
+          <h1 className="text-2xl font-bold text-[#0B6653]">
+            Kebutuhan Air Tanaman
+          </h1>
           <p>
-            Kebutuhan Air Lahan Tanaman merupakan sebuah fitur yang digunakan untuk membantu merencanakan dan
-            mengelola sistem irigasi untuk komiditas yang ditanam.
+            Kebutuhan Air Lahan Tanaman merupakan sebuah fitur yang digunakan
+            untuk membantu merencanakan dan mengelola sistem irigasi untuk
+            komiditas yang ditanam.
           </p>
         </div>
-        <p className="mb-5">Silahkan isi data berikut untuk menghitung Kebutuhan Irigasi!</p>
+        <p className="mb-5">
+          Silahkan isi data berikut untuk menghitung Kebutuhan Irigasi!
+        </p>
 
         <div className="flex flex-row gap-5">
           <div className="basis-1/2">
@@ -102,7 +107,10 @@ export default function KebutuhanAirTanamanPage() {
               </div>
 
               <div className="grid grid-cols-1">
-                <label htmlFor="plantPopulation" className="text-left mb-2 font-medium">
+                <label
+                  htmlFor="plantPopulation"
+                  className="text-left mb-2 font-medium"
+                >
                   Jumlah Populasi
                 </label>
                 <input
@@ -126,7 +134,9 @@ export default function KebutuhanAirTanamanPage() {
           </div>
 
           <div className="basis-1/2">
-            <p className="text-2xl font-bold text-emerald-800">Hasil Perhitungan</p>
+            <p className="text-2xl font-bold text-emerald-800">
+              Hasil Perhitungan
+            </p>
             <label className="text-left font-medium">Tahap Tanaman</label>
             <input
               type="text"
@@ -135,7 +145,9 @@ export default function KebutuhanAirTanamanPage() {
               readOnly
             />
 
-            <label className="text-left font-medium">Dosis Kadar Air Irigasi</label>
+            <label className="text-left font-medium">
+              Dosis Kadar Air Irigasi
+            </label>
             <input
               type="text"
               value={waterDose}

@@ -314,10 +314,9 @@ export default function ProfilePage() {
                   Isikan kata sandi lama anda atau ubah kata sandi.
                 </p>
               </div>
-
               <button
                 type="submit"
-                className="mt-5 bg-emerald-800 text-white rounded-xl w-full h-1/2 hover:bg-emerald-700"
+                className="mt-5 bg-emerald-800 text-white rounded-xl w-full h-1/2 py-2 hover:bg-emerald-700"
               >
                 {submissionLoading ? "Loading..." : "Simpan"}
               </button>

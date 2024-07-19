@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { fiturBilikTani } from "@/lib/data-informasi/home";
+import { fiturBilikTani, lahan } from "@/lib/data-informasi/home";
 import Image from "next/image";
 
 export default function HomePage() {
@@ -51,7 +51,7 @@ export default function HomePage() {
           }}
         >
           <CarouselContent className="h-[450px]">
-            {fiturBilikTani.map((pic, index) => (
+            {lahan.map((pic, index) => (
               <CarouselItem
                 key={index}
                 className="flex justify-center items-center"
