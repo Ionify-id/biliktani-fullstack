@@ -40,6 +40,7 @@ const handler = async (req, res) => {
                 message: 'Catatan berhasil diambil',
             }
         });
+    }
     client.close();
 }
 
