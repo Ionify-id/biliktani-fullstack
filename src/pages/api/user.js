@@ -60,7 +60,11 @@ const handler = async (req, res) => {
       client.close();
       return;
     }
-
+    //if katasandi is exist encrypt katasandi
+    if (updatedUser.kata_sandi) {
+      updatedUser.kata_sandi = await bcrypt.hash(updatedUser.kata_sandi, 10);
+    }
+    
     const user = await db.collection('users').findOne({ _id: decoded.id });
     if (!user) {
       res.status(404).json({ message: 'User not found' });
