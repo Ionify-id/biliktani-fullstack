@@ -29,16 +29,17 @@ const handler = async (req, res) => {
             client.close();
             return;
         }
-        //every user only have 1 note, so we use findOne
+        //every user only have 1 note, so we use findOne if the content is empty just return empty string
         const note = await db.collection('notes').findOne({ user_id: decoded.id });
         res.status(200).json({
-            data: note.content,
+            data: {
+                content: note ? note.content : '',
+            },
             meta: {
                 code: 200,
-                message: 'Berhasil mendapatkan catatan',
+                message: 'Catatan berhasil diambil',
             }
         });
-    }
     client.close();
 }
 
