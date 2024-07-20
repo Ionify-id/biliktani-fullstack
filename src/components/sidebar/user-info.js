@@ -28,14 +28,17 @@ export default function UserInfo({}) {
 
   function handleLogout() {
     const cookies = new Cookies();
+
     cookies.remove("token");
     cookies.remove("name");
+
     toast({
       description: "Berhasil logout",
       className: "rounded-lg border-2 border-emerald-700 p-4",
     });
+
     setTimeout(() => {
-      router.push("/login");
+      window.location.reload();
     }, 2000);
   }
 
