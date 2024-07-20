@@ -154,7 +154,7 @@ export default function FormKalkulatorPupuk() {
                 htmlFor="lebar"
                 className="block text-left mb-2 font-medium"
               >
-                Lebar
+                Lebar (m)
               </label>
               <input
                 type="number"

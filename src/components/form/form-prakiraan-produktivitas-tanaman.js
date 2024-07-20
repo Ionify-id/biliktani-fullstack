@@ -119,7 +119,7 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 htmlFor="panjang-rerata"
                 className="block text-left mb-2 font-medium"
               >
-                Panjang Rerata
+                Panjang Rerata (m)
               </label>
               <input
                 type="number"
@@ -138,7 +138,7 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 htmlFor="lebar"
                 className="block text-left mb-2 font-medium"
               >
-                Lebar
+                Lebar (m)
               </label>
               <input
                 type="number"
@@ -159,7 +159,7 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 htmlFor="jarak-tanaman"
                 className="block text-left mb-2 font-medium"
               >
-                Jarak antar tanam rata-rata
+                Jarak antar tanam rata-rata (m)
               </label>
               <input
                 type="number"
