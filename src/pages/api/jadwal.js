@@ -90,6 +90,33 @@ const handler = async (req, res) => {
             client.close();
             return;
         }
+        //check is that schedule is exist
+        const schedule = await db.collection('jadwal').findOne({
+            _id: req.body._id,
+        });
+        if (!schedule) {
+            res.status(404).json({
+                data: null,
+                meta: {
+                    code: 404,
+                    message: 'Jadwal tidak ditemukan',
+                }
+            });
+            client.close();
+            return;
+        }
+        //check is that schedule is belong to the user
+        if (schedule.user_id !== decoded.id) {
+            res.status(403).json({
+                data: null,
+                meta: {
+                    code: 403,
+                    message: 'Forbidden',
+                }
+            });
+            client.close();
+            return;
+        }
         const result = await db.collection('jadwal').deleteOne({ _id: req.body._id });
         res.status(200).json({
             data: result,
