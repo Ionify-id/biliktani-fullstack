@@ -75,6 +75,13 @@ const handler = async (req, res) => {
                 updatedSchedule[prop] = req.body[prop];
             }
         }
+        //make jadwal_tanam and jadwal_panen to date
+        if (updatedSchedule.jadwal_tanam) {
+            updatedSchedule.jadwal_tanam = new Date(updatedSchedule.jadwal_tanam);
+        }
+        if (updatedSchedule.jadwal_panen) {
+            updatedSchedule.jadwal_panen = new Date(updatedSchedule.jadwal_panen);
+        }
         const result = await db.collection('jadwal').updateOne({ _id: req.body._id }, { $set: updatedSchedule });
         res.status(201).json({
             data: result,
