@@ -31,7 +31,6 @@ export default function CatatanModal() {
           Authorization: "Bearer " + token,
         },
       });
-      // if (res.data.data === null)
       setContent(res.data.data.content);
     } catch (error) {
       console.error("Error fetching catatan:", error);

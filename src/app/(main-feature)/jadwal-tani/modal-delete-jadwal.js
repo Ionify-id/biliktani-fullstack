@@ -3,28 +3,56 @@
 import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+// import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Trash2 } from "lucide-react";
-import { DialogDescription } from "@radix-ui/react-dialog";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { useToast } from "@/components/ui/use-toast";
 
-export default function ModalDeleteJadwal() {
+export default function ModalDeleteJadwal({ id, onSuccess }) {
+  const cookie = new Cookies();
+  const token = cookie.get("token");
+  const { toast } = useToast();
+
   const [open, setOpen] = useState(false);
-  function handleSubmit(event) {
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    const fd = new FormData(event.target);
-    const data = Object.fromEntries(fd.entries());
-    console.log(data);
-    setTimeout(() => {
-      setOpen(false);
-    }, 1000);
+
+    console.log(token);
+
+    const requestBody = { _id: id };
+
+    try {
+      const response = await axios.delete("/api/jadwal", {
+        data: requestBody,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      onSuccess();
+      toast({
+        description: response.data.meta.message,
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        description: error.message,
+      });
+    } finally {
+      setTimeout(() => {
+        setOpen(false);
+      }, 1000);
+    }
   }
 
   return (
@@ -47,7 +75,10 @@ export default function ModalDeleteJadwal() {
           Apakah anda yakin ingin menghapus jadwal ini?
         </DialogDescription>
         <DialogFooter>
-          <Button className="bg-red-700/70 rounded-xl mx-auto hover:bg-red-500">
+          <Button
+            className="bg-red-700/70 rounded-xl mx-auto hover:bg-red-500"
+            onClick={handleSubmit}
+          >
             Hapus
           </Button>
         </DialogFooter>

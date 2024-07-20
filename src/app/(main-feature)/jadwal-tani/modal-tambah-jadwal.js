@@ -13,17 +13,51 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Cookies from "universal-cookie";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
 
-export default function ModalTambahJadwal() {
+export default function ModalTambahJadwal({ onSuccess }) {
+  const cookie = new Cookies();
+  const token = cookie.get("token");
+  const { toast } = useToast();
+
   const [open, setOpen] = useState(false);
-  function handleSubmit(event) {
+
+  async function handleSubmit(event) {
     event.preventDefault();
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
-    console.log(data);
-    setTimeout(() => {
-      setOpen(false);
-    }, 1000);
+
+    const jadwalTanam = new Date(data.jadwal_tanam).toISOString();
+    const jadwalPanen = new Date(data.jadwal_panen).toISOString();
+
+    const requestBody = {
+      komoditas: data.komoditas,
+      jadwal_tanam: jadwalTanam,
+      jadwal_panen: jadwalPanen,
+    };
+
+    try {
+      const response = await axios.post("/api/jadwal", requestBody, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      onSuccess();
+      toast({
+        description: response.data.meta.message,
+      });
+    } catch (error) {
+      toast({
+        description: error,
+      });
+      console.error("Error saving catatan:", error);
+    } finally {
+      setTimeout(() => {
+        setOpen(false);
+      }, 1000);
+    }
   }
 
   return (
