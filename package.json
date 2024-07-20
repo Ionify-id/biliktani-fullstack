@@ -27,7 +27,7 @@
     "clsx": "^2.1.1",
     "embla-carousel": "^8.1.6",
     "embla-carousel-autoplay": "^8.1.6",
-    "embla-carousel-react": "^8.1.6",
+    "embla-carousel-react": "^8.1.7",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.395.0",
     "mongodb": "^6.8.0",

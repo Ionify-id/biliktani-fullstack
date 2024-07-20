@@ -20,7 +20,7 @@ export default function RootLayout({ children, modal }) {
       >
         <>
           <LeftSidebar />
-          <main className="w-full h-full">{children}</main>
+          <main className="w-full h-screen overflow-y-auto">{children}</main>
           <RightSidebar />
         </>
         {modal}
