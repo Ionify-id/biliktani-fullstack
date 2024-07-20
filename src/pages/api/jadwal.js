@@ -75,6 +75,13 @@ const handler = async (req, res) => {
                 updatedSchedule[prop] = req.body[prop];
             }
         }
+        //make jadwal_tanam and jadwal_panen to date
+        if (updatedSchedule.jadwal_tanam) {
+            updatedSchedule.jadwal_tanam = new Date(updatedSchedule.jadwal_tanam);
+        }
+        if (updatedSchedule.jadwal_panen) {
+            updatedSchedule.jadwal_panen = new Date(updatedSchedule.jadwal_panen);
+        }
         const result = await db.collection('jadwal').updateOne({ _id: req.body._id }, { $set: updatedSchedule });
         res.status(201).json({
             data: result,
@@ -87,6 +94,33 @@ const handler = async (req, res) => {
         // Delete a schedule
         const decoded = await isAuthenticated(req, res);
         if (!decoded) {
+            client.close();
+            return;
+        }
+        //check is that schedule is exist
+        const schedule = await db.collection('jadwal').findOne({
+            _id: req.body._id,
+        });
+        if (!schedule) {
+            res.status(404).json({
+                data: null,
+                meta: {
+                    code: 404,
+                    message: 'Jadwal tidak ditemukan',
+                }
+            });
+            client.close();
+            return;
+        }
+        //check is that schedule is belong to the user
+        if (schedule.user_id !== decoded.id) {
+            res.status(403).json({
+                data: null,
+                meta: {
+                    code: 403,
+                    message: 'Forbidden',
+                }
+            });
             client.close();
             return;
         }
