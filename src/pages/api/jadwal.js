@@ -19,6 +19,8 @@ const handler = async (req, res) => {
             komoditas: req.body.komoditas,
             jadwal_tanam: new Date(req.body.jadwal_tanam),
             jadwal_panen: new Date(req.body.jadwal_panen),
+            //add user_id
+            user_id: decoded.id,
         };
         const result = await db.collection('jadwal').insertOne(schedule);
         res.status(201).json({
@@ -39,8 +41,8 @@ const handler = async (req, res) => {
         const limit = parseInt(req.query.limit) || 10;
         console.log(page, limit);
         const skip = (page - 1) * limit;
-        //sort by newest updated_at
-        const schedules = await db.collection('jadwal').find().sort({ updated_at: -1 }).skip(skip).limit(limit).toArray();
+        //sort by newest updated_at and with the user_id
+        const schedules = await db.collection('jadwal').find({ user_id: decoded.id }).sort({ updated_at: -1 }).skip(skip).limit(limit).toArray();
         res.status(200).json({
             data: schedules,
             meta: {
