@@ -5,67 +5,59 @@ import React, { useState } from "react";
 export default function KebutuhanAirTanamanPage() {
   const [selectedPlant, setSelectedPlant] = useState("");
   const [plantPopulation, setPlantPopulation] = useState(0);
-  const [stage, setStage] = useState("");
-  const [waterDose, setWaterDose] = useState("");
+  const [stage, setStage] = useState({
+    stageText: [
+      "Tahap 1: Minggu 1",
+      "Tahap 2: Minggu 2",
+      "Tahap 3: Minggu 3 dan seterusnya",
+    ],
+    dose: [0, 0, 0],
+  });
+  const [selectedStage, setSelectedStage] = useState(0); // State for selected stage
 
   const calculateWaterDose = (e) => {
     e.preventDefault();
-    let dose = 0;
-    let stageText = "";
+
+    let dose = [0, 0, 0];
 
     switch (selectedPlant) {
       case "Bayam":
-        if (plantPopulation <= 0) break;
-        if (plantPopulation <= 1) {
-          dose = 0.004 * plantPopulation;
-          stageText = "Tahap 1: Minggu 1";
-        } else if (plantPopulation === 2) {
-          dose = 0.005 * plantPopulation;
-          stageText = "Tahap 2: Minggu 2";
-        } else {
-          dose = 0.006 * plantPopulation;
-          stageText = "Tahap 3: Minggu 3 dan seterusnya";
-        }
+        dose[0] = (0.004 * plantPopulation).toFixed(2);
+        dose[1] = (0.005 * plantPopulation).toFixed(2);
+        dose[2] = (0.006 * plantPopulation).toFixed(2);
         break;
       case "Kangkung":
-        if (plantPopulation <= 0) break;
-        if (plantPopulation <= 1) {
-          dose = 0.0045 * plantPopulation;
-          stageText = "Tahap 1: Minggu 1";
-        } else if (plantPopulation === 2) {
-          dose = 0.005 * plantPopulation;
-          stageText = "Tahap 2: Minggu 2";
-        } else {
-          dose = 0.0055 * plantPopulation;
-          stageText = "Tahap 3: Minggu 3 dan seterusnya";
-        }
+        dose[0] = (0.0045 * plantPopulation).toFixed(2);
+        dose[1] = (0.005 * plantPopulation).toFixed(2);
+        dose[2] = (0.0055 * plantPopulation).toFixed(2);
         break;
       case "Kemangi":
-        if (plantPopulation <= 0) break;
-        if (plantPopulation <= 1) {
-          dose = 0.0025 * plantPopulation;
-          stageText = "Tahap 1: Minggu 1";
-        } else if (plantPopulation === 2) {
-          dose = 0.003 * plantPopulation;
-          stageText = "Tahap 2: Minggu 2";
-        } else {
-          dose = 0.0035 * plantPopulation;
-          stageText = "Tahap 3: Minggu 3 dan seterusnya";
-        }
+        dose[0] = (0.0025 * plantPopulation).toFixed(2);
+        dose[1] = (0.003 * plantPopulation).toFixed(2);
+        dose[2] = (0.0035 * plantPopulation).toFixed(2);
         break;
       default:
-        stageText = "Silakan pilih tanaman dan masukkan jumlah populasi";
+        dose = [0, 0, 0];
     }
 
-    setStage(stageText);
-    setWaterDose(dose.toFixed(2) + " liter/hari");
+    setStage((prevStage) => ({
+      ...prevStage,
+      dose: dose,
+    }));
   };
 
   const resetCalculation = () => {
     setSelectedPlant("");
     setPlantPopulation(0);
-    setStage("");
-    setWaterDose("");
+    setStage({
+      stageText: [
+        "Tahap 1: Minggu 1",
+        "Tahap 2: Minggu 2",
+        "Tahap 3: Minggu 3 dan seterusnya",
+      ],
+      dose: [0, 0, 0],
+    });
+    setSelectedStage(0);
   };
 
   return (
@@ -78,7 +70,7 @@ export default function KebutuhanAirTanamanPage() {
           <p>
             Kebutuhan Air Lahan Tanaman merupakan sebuah fitur yang digunakan
             untuk membantu merencanakan dan mengelola sistem irigasi untuk
-            komiditas yang ditanam.
+            komoditas yang ditanam.
           </p>
         </div>
         <p className="mb-5">
@@ -88,7 +80,7 @@ export default function KebutuhanAirTanamanPage() {
         <div className="flex flex-row gap-5">
           <div className="basis-1/2">
             <form onSubmit={calculateWaterDose}>
-              <div className="grid grid-cols-1">
+              <div className="grid grid-cols-1 mb-4">
                 <label htmlFor="plant" className="text-left mb-2 font-medium">
                   Pilih Tanaman
                 </label>
@@ -106,7 +98,7 @@ export default function KebutuhanAirTanamanPage() {
                 </select>
               </div>
 
-              <div className="grid grid-cols-1">
+              <div className="grid grid-cols-1 mb-4">
                 <label
                   htmlFor="plantPopulation"
                   className="text-left mb-2 font-medium"
@@ -117,7 +109,7 @@ export default function KebutuhanAirTanamanPage() {
                   type="number"
                   id="plantPopulation"
                   value={plantPopulation}
-                  onChange={(e) => setPlantPopulation(e.target.value)}
+                  onChange={(e) => setPlantPopulation(Number(e.target.value))}
                   className="p-2 border border-gray-300 rounded-md"
                   min="0"
                   required
@@ -138,19 +130,27 @@ export default function KebutuhanAirTanamanPage() {
               Hasil Perhitungan
             </p>
             <label className="text-left font-medium">Tahap Tanaman</label>
-            <input
-              type="text"
-              value={stage}
+            <select
+              id="stageText"
+              name="stageText"
+              value={selectedStage}
+              onChange={(e) => setSelectedStage(Number(e.target.value))}
               className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"
-              readOnly
-            />
+            >
+              <option value="">Pilih Tahap</option>
+              {stage.stageText.map((text, index) => (
+                <option key={index} value={index}>
+                  {text}
+                </option>
+              ))}
+            </select>
 
             <label className="text-left font-medium">
               Dosis Kadar Air Irigasi
             </label>
             <input
               type="text"
-              value={waterDose}
+              value={stage.dose[selectedStage] || 0}
               className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"
               readOnly
             />
