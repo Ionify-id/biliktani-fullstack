@@ -21,7 +21,7 @@ const handler = async (req, res) => {
       lokasi_lahan: req.body.lokasi_lahan,
       luas_lahan: req.body.luas_lahan,
       jenis_komoditas: req.body.jenis_komoditas,
-      produktivitas: req.body.produktivitas,
+      tanggal_lahir: new Date(req.body.tanggal_lahir),
       cara_pemasaran: req.body.cara_pemasaran,
     };
     //check is there any user with the same phone number
@@ -47,7 +47,7 @@ const handler = async (req, res) => {
       }
     });
   } else if (req.method === 'PUT') {
-    const allowedFields = ["nama_lengkap", "no_telepon", "alamat", "dusun", "rt", "rw", "kelompok_tani", "kata_sandi", "lokasi_lahan", "luas_lahan", "jenis_komoditas", "produktivitas", "cara_pemasaran"];
+    const allowedFields = ["nama_lengkap", "no_telepon", "alamat", "dusun", "rt", "rw", "kelompok_tani", "kata_sandi", "lokasi_lahan", "luas_lahan", "jenis_komoditas", "tanggal_lahir", "cara_pemasaran"];
     let updatedUser = {};
     for (let prop in req.body) {
         if (allowedFields.includes(prop)) {
@@ -64,7 +64,10 @@ const handler = async (req, res) => {
     if (updatedUser.kata_sandi) {
       updatedUser.kata_sandi = await bcrypt.hash(updatedUser.kata_sandi, 10);
     }
-    
+    //make tanggal_lahir to date
+    if (updatedUser.tanggal_lahir) {
+      updatedUser.tanggal_lahir = new Date(updatedUser.tanggal_lahir);
+    }
     const user = await db.collection('users').findOne({ _id: decoded.id });
     if (!user) {
       res.status(404).json({ message: 'User not found' });
