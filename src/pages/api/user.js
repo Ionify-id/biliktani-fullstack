@@ -18,7 +18,7 @@ const handler = async (req, res) => {
       rw: req.body.rw,
       kelompok_tani: req.body.kelompok_tani,
       kata_sandi: hashedPassword,
-      lokasi_lahan: req.body.lokasi_lahan,
+      status_kepemilikan: req.body.status_kepemilikan,
       luas_lahan: req.body.luas_lahan,
       jenis_komoditas: req.body.jenis_komoditas,
       tanggal_lahir: new Date(req.body.tanggal_lahir),
@@ -47,7 +47,7 @@ const handler = async (req, res) => {
       }
     });
   } else if (req.method === 'PUT') {
-    const allowedFields = ["nama_lengkap", "no_telepon", "alamat", "dusun", "rt", "rw", "kelompok_tani", "kata_sandi", "lokasi_lahan", "luas_lahan", "jenis_komoditas", "tanggal_lahir", "cara_pemasaran"];
+    const allowedFields = ["nama_lengkap", "no_telepon", "alamat", "dusun", "rt", "rw", "kelompok_tani", "kata_sandi", "status_kepemilikan", "luas_lahan", "jenis_komoditas", "tanggal_lahir", "cara_pemasaran"];
     let updatedUser = {};
     for (let prop in req.body) {
         if (allowedFields.includes(prop)) {
