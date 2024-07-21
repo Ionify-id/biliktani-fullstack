@@ -22,6 +22,12 @@ export function convertToDateInputFormat(isoString) {
   return `${year}-${month}-${day}`;
 }
 
+export function addDaysToDate(date, days) {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
 export function getTimePeriod() {
   const now = new Date();
   const currentHour = now.getHours();

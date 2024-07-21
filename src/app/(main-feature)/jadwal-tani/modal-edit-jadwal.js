@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Pencil } from "lucide-react";
-import { convertToDateInputFormat } from "@/lib/utils";
+import { addDaysToDate, convertToDateInputFormat } from "@/lib/utils";
 import Cookies from "universal-cookie";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
@@ -28,7 +28,6 @@ export default function ModalEditJadwal({ data, onSuccess }) {
     _id: data._id,
     komoditas: data.komoditas,
     jadwal_tanam: convertToDateInputFormat(data.jadwal_tanam),
-    jadwal_panen: convertToDateInputFormat(data.jadwal_panen),
   });
 
   function handleChange(e) {
@@ -44,14 +43,24 @@ export default function ModalEditJadwal({ data, onSuccess }) {
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
 
-    const jadwalTanam = new Date(data.jadwal_tanam).toISOString();
-    const jadwalPanen = new Date(data.jadwal_panen).toISOString();
+    const komoditasDays = {
+      Bayam: 20,
+      Kangkung: 20,
+      Kemangi: 40,
+    };
+
+    const { komoditas, jadwal_tanam } = data;
+    const jadwalTanam = new Date(jadwal_tanam);
+    const jadwalPanen = addDaysToDate(
+      jadwalTanam,
+      komoditasDays[komoditas] || 0
+    );
 
     const requestBody = {
       _id: prevData._id,
-      komoditas: data.komoditas,
-      jadwal_tanam: jadwalTanam,
-      jadwal_panen: jadwalPanen,
+      komoditas,
+      jadwal_tanam: jadwalTanam.toISOString(),
+      jadwal_panen: jadwalPanen.toISOString(),
     };
 
     try {
@@ -121,18 +130,6 @@ export default function ModalEditJadwal({ data, onSuccess }) {
               name="jadwal_tanam"
               className="border border-gray-300 rounded-md p-2"
               value={prevData.jadwal_tanam}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-2">
-            <Label htmlFor="jadwal_panen">Jadwal Panen</Label>
-            <input
-              type="date"
-              id="jadwal_panen"
-              name="jadwal_panen"
-              className="border border-gray-300 rounded-md p-2"
-              value={prevData.jadwal_panen}
               onChange={handleChange}
               required
             />

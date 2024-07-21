@@ -9,7 +9,7 @@ export default function InformasiHamaPage() {
       <div className="container">
         <div className="container mx-auto my-8 p-4 border-2 rounded-lg border-gray-150">
           <h1 className="text-2xl font-bold text-emerald-700">
-            Informasi Hama
+            Informasi Hama dan Penyakit
           </h1>
           <p>
             Informasi hama adalah fitur yang dapat digunakan untuk

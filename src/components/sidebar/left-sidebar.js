@@ -18,9 +18,10 @@ export default function LeftSidebar() {
             priority
           />
         </p>
+        <p className="text-sm font-bold mt-2 text-center">
+          PPK ORMAWA HIMATETA
+        </p>
       </div>
-      {/* NAMA TIM */}
-      <p>PPK ORMAWA HIMATETA</p>
       <div className="flex-1 overflow-y-auto">
         <Suspense>
           <NavBar />

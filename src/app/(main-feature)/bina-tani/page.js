@@ -6,12 +6,11 @@ import {
   taniMarket,
 } from "@/lib/data-informasi/bina-tani";
 import { Button } from "@/components/ui/button";
-import IconWhatsapp from "@/assets/bina-tani/whatsapp.png";
 
 export default function BinaTaniPage() {
   return (
     <div className=" max-h-screen overflow-y-auto">
-      <div className="container ">
+      <div className="container mb-8">
         <>
           <div className="container mx-auto mt-8 p-4 border-2 rounded-lg border-gray-150">
             <h1 className="text-2xl font-bold text-[#0B6653]">Klinik Tani</h1>
@@ -33,7 +32,7 @@ export default function BinaTaniPage() {
                     variant="outline"
                     className="w-full flex flex-row space-x-4 border border-2 border-emerald-800 rounded-xl"
                   >
-                    <Image src={IconWhatsapp} alt={data.nama} />{" "}
+                    <Image src={data.icon} alt={data.nama} />{" "}
                     <span className="text-emerald-800">{data.nama}</span>
                   </Button>
                 </a>
@@ -61,7 +60,7 @@ export default function BinaTaniPage() {
                     variant="outline"
                     className="w-full flex flex-row space-x-4 border border-2 border-emerald-800 rounded-xl"
                   >
-                    <Image src={IconWhatsapp} alt={data.nama} />{" "}
+                    <Image src={data.icon} alt={data.nama} />{" "}
                     <span className="text-emerald-800">{data.nama}</span>
                   </Button>
                 </a>
@@ -82,8 +81,49 @@ export default function BinaTaniPage() {
           <p className="my-2 text-sm">
             Silahkan kunjungi link berikut untuk mulai berbelanja!
           </p>
-          <ul className="flex flex-col space-y-4 w-5/12 mb-8">
-            {taniMarket.map((data, index) => (
+          <ul className="grid grid-cols-2 gap-y-4 gap-x-8">
+            {taniMarket.section1.map((data, index) => (
+              <li key={index}>
+                <a href={data.link} target="_blank" rel="noopener noreferrer">
+                  <Button variant={"primary"} className={data.style}>
+                    <Image
+                      src={data.icon}
+                      alt={data.nama}
+                      width={24}
+                      height={24}
+                    />{" "}
+                    <span className={"text-white"}>{data.nama}</span>
+                  </Button>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="my-2 text-sm">
+            Silahkan kunjungi link berikut untuk mulai berjualan di online shop
+            desaagritech
+          </p>
+          <ul className="grid grid-cols-2 gap-y-4 gap-x-8">
+            {taniMarket.section2.map((data, index) => (
+              <li key={index}>
+                <a href={data.link} target="_blank" rel="noopener noreferrer">
+                  <Button variant={"outline"} className={data.style}>
+                    <Image
+                      src={data.icon}
+                      alt={data.nama}
+                      width={24}
+                      height={24}
+                    />{" "}
+                    <span className={"text-emerald-800"}>{data.nama}</span>
+                  </Button>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="my-2 text-sm">
+            Silahkan kunjungi link berikut untuk mulai berbelanja!
+          </p>
+          <ul className="grid grid-cols-2 gap-y-4 gap-x-8">
+            {taniMarket.section3.map((data, index) => (
               <li key={index}>
                 <a href={data.link} target="_blank" rel="noopener noreferrer">
                   <Button
@@ -94,7 +134,12 @@ export default function BinaTaniPage() {
                     }
                     className={data.style}
                   >
-                    <Image src={data.icon} alt={data.nama} />{" "}
+                    <Image
+                      src={data.icon}
+                      alt={data.nama}
+                      width={24}
+                      height={24}
+                    />{" "}
                     <span
                       className={
                         data.nama === "Group Jual Beli Agritech Mart"

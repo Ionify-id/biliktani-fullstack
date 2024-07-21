@@ -16,6 +16,7 @@ import {
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
+import { addDaysToDate } from "@/lib/utils";
 
 export default function ModalTambahJadwal({ onSuccess }) {
   const cookie = new Cookies();
@@ -29,13 +30,23 @@ export default function ModalTambahJadwal({ onSuccess }) {
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
 
-    const jadwalTanam = new Date(data.jadwal_tanam).toISOString();
-    const jadwalPanen = new Date(data.jadwal_panen).toISOString();
+    const komoditasDays = {
+      Bayam: 20,
+      Kangkung: 20,
+      Kemangi: 40,
+    };
+
+    const { komoditas, jadwal_tanam } = data;
+    const jadwalTanam = new Date(jadwal_tanam);
+    const jadwalPanen = addDaysToDate(
+      jadwalTanam,
+      komoditasDays[komoditas] || 0
+    );
 
     const requestBody = {
-      komoditas: data.komoditas,
-      jadwal_tanam: jadwalTanam,
-      jadwal_panen: jadwalPanen,
+      komoditas,
+      jadwal_tanam: jadwalTanam.toISOString(),
+      jadwal_panen: jadwalPanen.toISOString(),
     };
 
     try {
@@ -97,21 +108,6 @@ export default function ModalTambahJadwal({ onSuccess }) {
               type="date"
               id="jadwal_tanam"
               name="jadwal_tanam"
-              className="border border-gray-300 rounded-md p-2"
-              required
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-2">
-            <label
-              htmlFor="jadwal_panen"
-              className="block text-left font-medium"
-            >
-              Jadwal Panen
-            </label>
-            <input
-              type="date"
-              id="jadwal_panen"
-              name="jadwal_panen"
               className="border border-gray-300 rounded-md p-2"
               required
             />

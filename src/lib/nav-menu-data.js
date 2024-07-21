@@ -67,8 +67,8 @@ const navMenu = [
     },
     subMenu: [
       {
-        href: "/rawat-tani/informasi-hama",
-        title: "Informasi hama",
+        href: "/rawat-tani/informasi-hama-dan-penyakit",
+        title: "Informasi hama dan penyakit",
       },
       {
         href: "/rawat-tani/kebutuhan-air-tanaman",

@@ -9,12 +9,18 @@ import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const { toast } = useToast();
   const router = useRouter();
   const cookies = new Cookies();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  function togglePasswordVisibility() {
+    setShowPassword(!showPassword);
+  }
 
   async function handleSubmit(e) {
     setLoading(true);
@@ -46,6 +52,7 @@ export default function LoginPage() {
       setLoading(false);
     }
   }
+
   return (
     <main className="flex h-screen overflow-hidden">
       <div className="flex w-full">
@@ -85,14 +92,27 @@ export default function LoginPage() {
             <label htmlFor="password" className="mb-2 font-bold">
               Kata Sandi
             </label>
-            <input
-              type="password"
-              id="kata_sandi"
-              name="kata_sandi"
-              placeholder="Masukkan kata sandi"
-              className="mb-2 p-2 border border-gray-300 rounded"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="kata_sandi"
+                name="kata_sandi"
+                placeholder="Masukkan kata sandi"
+                className="w-full mb-2 p-2 border border-gray-300 rounded"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute inset-y-0 right-0 mr-4 mb-2 flex items-center"
+              >
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4 text-gray-500" />
+                ) : (
+                  <Eye className="h-4 w-4 text-gray-500" />
+                )}
+              </button>
+            </div>
 
             <button
               type="submit"
