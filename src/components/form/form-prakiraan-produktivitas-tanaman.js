@@ -159,7 +159,7 @@ export default function FormPrakiraanProduktivitasTanaman() {
                 htmlFor="jarak-tanaman"
                 className="block text-left mb-2 font-medium"
               >
-                Jarak antar tanam rata-rata (m)
+                Jarak antar tanam rata-rata (cm)
               </label>
               <input
                 type="number"

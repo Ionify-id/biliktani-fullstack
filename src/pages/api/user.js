@@ -58,7 +58,7 @@ const handler = async (req, res) => {
       "rw",
       "kelompok_tani",
       "kata_sandi",
-      "status_kepemilikan",
+      "lokasi_lahan",
       "luas_lahan",
       "jenis_komoditas",
       "tanggal_lahir",
