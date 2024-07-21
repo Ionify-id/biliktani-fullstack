@@ -19,7 +19,7 @@ function calculateLuasBersih(jumlahBedeng, lebar, panjang) {
 }
 
 function calculatePopulasi(luasBersih, jarakTanaman) {
-  const populasi = luasBersih / jarakTanaman;
+  const populasi = luasBersih / (jarakTanaman / 100);
   return populasi;
 }
 

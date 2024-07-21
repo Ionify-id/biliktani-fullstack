@@ -98,7 +98,7 @@ export default function DrainaseLahanTanamanPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid grid-cols-1">
                 <div className="grid grid-cols-1">
                   <label htmlFor="dailyRainfall" className="text-left mb-2 font-medium">
                     Curah Hujan Harian (mm/hari)
@@ -114,35 +114,6 @@ export default function DrainaseLahanTanamanPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1">
-                  <label htmlFor="waterLevelDrop" className="text-left mb-2 font-medium">
-                    Penurunan Ketinggian Air (cm)
-                  </label>
-                  <input
-                    type="number"
-                    id="waterLevelDrop"
-                    value={waterLevelDrop}
-                    onChange={(e) => setWaterLevelDrop(e.target.value)}
-                    className="p-2 border border-gray-300 rounded-md"
-                    min="0"
-                    required
-                  />
-                </div>
-
-                <div className="grid grid-cols-1">
-                  <label htmlFor="time" className="text-left mb-2 font-medium">
-                    Waktu (menit)
-                  </label>
-                  <input
-                    type="number"
-                    id="time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    className="p-2 border border-gray-300 rounded-md"
-                    min="0"
-                    required
-                  />
-                </div>
               </div>
 
               <button
