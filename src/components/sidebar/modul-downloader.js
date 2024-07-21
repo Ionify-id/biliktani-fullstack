@@ -1,6 +1,6 @@
 "use client";
 
-import { modulPenggunaan } from "@/lib/modul";
+import { modulPenggunaan } from "@/lib/data-informasi/modul";
 import { Button } from "../ui/button";
 import { Download } from "lucide-react";
 

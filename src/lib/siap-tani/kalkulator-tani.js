@@ -26,7 +26,7 @@ const landOptionsData = [
 ];
 
 function calculateLuasBersih(jumlahBedeng, panjangRerata, lebar) {
-  const luas = (jumlahBedeng * (panjangRerata * lebar)) / 10000; // converting to hectares
+  const luas = (jumlahBedeng * (panjangRerata * lebar)) / 10000;
   return luas;
 }
 

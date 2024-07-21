@@ -106,7 +106,7 @@ export default function JadwalTaniPage() {
   }
 
   return (
-    <div className="overflow-y-auto max-h-screen">
+    <div className="container overflow-y-auto max-h-screen">
       <div className="container mx-auto mt-8 p-4 border-2 rounded-lg border-gray-150">
         <h1 className="text-2xl font-bold text-emerald-700">Jadwal tani</h1>
         <p>

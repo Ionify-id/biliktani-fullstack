@@ -19,6 +19,8 @@ export default function LeftSidebar() {
           />
         </p>
       </div>
+      {/* NAMA TIM */}
+      <p>PPK ORMAWA HIMATETA</p>
       <div className="flex-1 overflow-y-auto">
         <Suspense>
           <NavBar />

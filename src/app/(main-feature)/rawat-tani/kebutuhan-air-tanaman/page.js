@@ -150,7 +150,7 @@ export default function KebutuhanAirTanamanPage() {
             </label>
             <input
               type="text"
-              value={stage.dose[selectedStage] || 0}
+              value={`${stage.dose[selectedStage] || 0} L/hari`}
               className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"
               readOnly
             />
