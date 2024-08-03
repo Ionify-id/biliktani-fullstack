@@ -22,6 +22,7 @@ export default function FormPrakiraanProduktivitasTanaman() {
     luasBersih: 0,
     populasi: 0,
     prakiraanProduktivitas: 0,
+    banyakGabung: 0.0,
   });
 
   function handleChange(event) {
@@ -45,11 +46,16 @@ export default function FormPrakiraanProduktivitasTanaman() {
       rendemen,
       populasi
     );
+    const banyakGabung = calculateBanyakGabung(
+      prakiraanProduktivitas,
+      pilihanTanaman
+    );
 
     setResult({
       luasBersih,
       populasi,
       prakiraanProduktivitas,
+      banyakGabung,
     });
   }
 
@@ -205,6 +211,14 @@ export default function FormPrakiraanProduktivitasTanaman() {
           type="text"
           className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"
           value={`${result.prakiraanProduktivitas} kg`}
+          readOnly
+        />
+
+        <label>Banyak Gabung:</label>
+        <input
+          type="text"
+          className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"
+          value={`${result.banyakGabung} gabung`}
           readOnly
         />
 

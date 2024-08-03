@@ -116,6 +116,29 @@ export default function KebutuhanAirTanamanPage() {
                 />
               </div>
 
+              <div className="grid grid-cols-1">
+                <label
+                  htmlFor="stageText"
+                  className="text-left mb-2 font-medium"
+                >
+                  Usia Tanaman
+                </label>
+                <select
+                  id="stageText"
+                  name="stageText"
+                  value={selectedStage}
+                  onChange={(e) => setSelectedStage(Number(e.target.value))}
+                  className="p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="">Pilih Tahap</option>
+                  {stage.stageText.map((text, index) => (
+                    <option key={index} value={index}>
+                      {text}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <button
                 type="submit"
                 className="mt-5 py-2 bg-emerald-800 text-white rounded-xl w-full hover:bg-emerald-700"
@@ -129,21 +152,6 @@ export default function KebutuhanAirTanamanPage() {
             <p className="text-2xl font-bold text-emerald-800">
               Hasil Perhitungan
             </p>
-            <label className="text-left font-medium">Tahap Tanaman</label>
-            <select
-              id="stageText"
-              name="stageText"
-              value={selectedStage}
-              onChange={(e) => setSelectedStage(Number(e.target.value))}
-              className="w-full p-2 mb-4 border border-gray-300 bg-gray-200 rounded-md"
-            >
-              <option value="">Pilih Tahap</option>
-              {stage.stageText.map((text, index) => (
-                <option key={index} value={index}>
-                  {text}
-                </option>
-              ))}
-            </select>
 
             <label className="text-left font-medium">
               Dosis Kadar Air Irigasi

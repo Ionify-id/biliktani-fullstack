@@ -36,7 +36,7 @@ function calculateKebutuhan(selectedLandOption, luas) {
 }
 
 function calculateKebutuhanBanyakKarung(kebutuhan) {
-  const banyakKarung = kebutuhan / 40;
+  const banyakKarung = kebutuhan / 25;
   return banyakKarung;
 }
 

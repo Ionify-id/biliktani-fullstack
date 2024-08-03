@@ -6,6 +6,7 @@ import WeatherInfo from "./weather-info";
 import ModulDownloader from "./modul-downloader";
 import Cookies from "universal-cookie";
 import LoginButton from "./login-button";
+import SocmedInfo from "./socmed-info";
 
 export default function RightSidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,6 +25,7 @@ export default function RightSidebar() {
         {!mounted ? null : isAuthenticated ? <UserInfo /> : <LoginButton />}
         <WeatherInfo />
         <ModulDownloader />
+        <SocmedInfo />
       </div>
     </aside>
   );

@@ -4,6 +4,8 @@ import ImageKangkung from "@/assets/informasi-tanaman/kangkung.png";
 import ImageKucai from "@/assets/informasi-tanaman/kucai.png";
 import ImagePakcoy from "@/assets/informasi-tanaman/pakcoy.png";
 import ImageCaisim from "@/assets/informasi-tanaman/caisim.jpg";
+import ImageBayamMerah from "@/assets/informasi-tanaman/bayam-merah.jpg";
+import ImageBayamKakap from "@/assets/informasi-tanaman/bayam-kakap.jpg";
 
 const informasiTanaman = [
   {
@@ -270,6 +272,108 @@ const informasiTanaman = [
         "Persiapan benih: Rendam benih caisim dalam air selama 24 jam sebelum ditanam.",
         "Penanaman: Tanam benih dengan kedalaman 0.5-1 cm di tanah yang telah diolah.",
         "Jarak tanam: Beri jarak antar tanaman sekitar 10-15 cm agar pertumbuhan optimal.",
+        "Penyiraman awal: Siram tanah secara merata setelah menanam benih.",
+      ],
+      caraPerawatan: [
+        "Penyiraman: Siram tanaman secara rutin, jaga agar tanah tetap lembab tetapi tidak becek.",
+        "Pemupukan lanjutan: Beri pupuk organik setiap 2-3 minggu sekali.",
+        "Pengendalian hama/penyakit: Periksa tanaman secara rutin untuk mendeteksi hama atau penyakit, gunakan insektisida atau fungisida alami jika diperlukan.",
+        "Penyiangan: Lakukan penyiangan secara berkala untuk menghilangkan gulma yang dapat mengganggu pertumbuhan tanaman.",
+        "Pemangkasan: Pangkas daun yang sudah tua atau rusak untuk merangsang pertumbuhan tunas baru.",
+      ],
+    },
+  },
+  {
+    id: "bayam-merah",
+    nama: "Bayam Merah",
+    latin: "",
+    image: ImageBayamMerah,
+    detailTanaman: {
+      keluarga: "",
+      genus: "",
+      estimasiWaktuPanen: "",
+      kedalamanPengolahanTanah: "",
+      pemupukanDasar: "",
+      jenisHamaPenyakit: [],
+      kondisiTerbaik: {
+        suhuIdeal: "",
+        kelembabanUdara: "",
+        kelembabanTanah: "",
+        nutrisiTanah: "",
+        cahaya: "",
+        pHTanah: "",
+      },
+      deskripsiTanaman: `
+        Bayam Merah (Amaranthus tricolor) adalah salah satu varietas bayam yang dikenal dengan warna daunnya yang mencolok, yaitu merah keunguan. Warna ini membuat bayam merah menjadi tanaman yang menarik dan sering digunakan dalam berbagai hidangan kuliner untuk memberikan sentuhan warna yang indah. Tanaman ini juga mudah dikenali berkat warna batangnya yang merah keunguan.
+        \n\n
+        Tanaman bayam merah termasuk dalam keluarga Amaranthaceae dan genus Amaranthus. Genus ini mencakup berbagai jenis bayam yang dibudidayakan di seluruh dunia. Bayam merah memiliki siklus hidup yang cepat, yang membuatnya ideal untuk budidaya intensif. Selain itu, tanaman ini dapat tumbuh dengan baik di berbagai kondisi tanah dan iklim, termasuk di daerah tropis dan subtropis.
+        \n\n
+        Bayam merah sering dibudidayakan sebagai tanaman sayuran karena nilai gizinya yang tinggi dan kemudahan dalam perawatannya. Daunnya kaya akan vitamin A, C, dan K, serta mineral penting seperti zat besi, kalsium, dan magnesium. Bayam merah juga mengandung antioksidan yang bermanfaat untuk kesehatan. Karena kemudahan perawatannya, bayam merah sering menjadi pilihan bagi petani dan pekebun rumahan yang ingin menambah variasi sayuran dalam kebun mereka.`,
+      manfaat: [
+        "Vitamin: Mengandung vitamin A, C, dan K yang penting untuk kesehatan mata, sistem kekebalan tubuh, dan pembekuan darah.",
+        "Mineral: Sumber zat besi, kalsium, magnesium, dan kalium yang baik untuk kesehatan tulang dan otot.",
+        "Antioksidan: Bayam merah kaya akan antioksidan seperti beta-karoten dan flavonoid yang membantu melawan radikal bebas dan mengurangi risiko penyakit kronis.",
+        "Kesehatan Darah: Kandungan zat besi yang tinggi membantu mencegah anemia dengan meningkatkan produksi sel darah merah.",
+        "Kesehatan Pencernaan: Serat yang terdapat dalam bayam merah membantu memperlancar sistem pencernaan dan mencegah sembelit.",
+        "Menurunkan Tekanan Darah: Kandungan kalium dalam bayam merah membantu mengatur tekanan darah dan menjaga kesehatan jantung.",
+        "Anti-Inflamasi: Senyawa anti-inflamasi yang ditemukan dalam bayam merah dapat membantu mengurangi peradangan dan nyeri dalam tubuh.",
+        "Penglihatan: Vitamin A dan beta-karoten dalam bayam merah sangat baik untuk menjaga kesehatan mata dan mencegah degenerasi makula terkait usia.",
+      ],
+      caraPenanaman: [
+        "Persiapan Benih: Pilih benih bayam merah yang berkualitas.",
+        "Penanaman: Tanam benih dengan kedalaman 0.5-1 cm di tanah yang telah diolah.",
+        "Jarak Tanam: Beri jarak antar tanaman sekitar 15-20 cm agar pertumbuhan optimal.",
+        "Penyiraman awal: Siram tanah secara merata setelah menanam benih.",
+      ],
+      caraPerawatan: [
+        "Penyiraman: Siram tanaman secara rutin, jaga agar tanah tetap lembab tetapi tidak becek.",
+        "Pemupukan lanjutan: Beri pupuk organik setiap 2-3 minggu sekali.",
+        "Pengendalian hama/penyakit: Periksa tanaman secara rutin untuk mendeteksi hama atau penyakit, gunakan insektisida atau fungisida alami jika diperlukan.",
+        "Penyiangan: Lakukan penyiangan secara berkala untuk menghilangkan gulma yang dapat mengganggu pertumbuhan tanaman.",
+        "Pemangkasan: Pangkas daun yang sudah tua atau rusak untuk merangsang pertumbuhan tunas baru.",
+      ],
+    },
+  },
+  {
+    id: "bayam-kakap",
+    nama: "Bayam Kakap",
+    latin: "Amaranthus cruentus",
+    image: ImageBayamKakap,
+    detailTanaman: {
+      keluarga: "Amaranthaceae",
+      genus: "Amaranthus",
+      estimasiWaktuPanen: "30-40 hari setelah tanam",
+      kedalamanPengolahanTanah: "15-20 cm",
+      pemupukanDasar: "Kompos atau pupuk kandang",
+      jenisHamaPenyakit: [
+        "Kutu daun",
+        "Ulat",
+        "Penyakit embun tepung",
+        "Bercak daun",
+      ],
+      kondisiTerbaik: {
+        suhuIdeal: "20-30°C",
+        kelembabanUdara: "60-70%",
+        kelembabanTanah: "Lembab tetapi tidak becek",
+        nutrisiTanah: "800-1200 PPM (Parts Per Million)",
+        cahaya: "Sinar matahari langsung 4-6 jam per hari",
+        pHTanah: "6.0-7.0",
+      },
+      deskripsiTanaman: `
+        Bayam Kakap (Amaranthus cruentus) adalah salah satu varietas bayam yang memiliki ciri khas berupa daun besar berwarna hijau tua hingga merah marun. Tanaman ini termasuk dalam keluarga Amaranthaceae dan genus Amaranthus, sama seperti bayam merah. Bayam kakap sering ditanam di berbagai negara tropis dan subtropis karena kemampuannya untuk tumbuh dengan cepat dan hasil panen yang melimpah. Tinggi tanaman ini bisa mencapai 1-2 meter, membuatnya menonjol dibandingkan dengan varietas bayam lainnya.
+        \n\n
+        Bayam kakap tidak hanya dihargai karena ukurannya yang besar, tetapi juga karena kandungan nutrisinya yang tinggi. Daun bayam kakap kaya akan vitamin A, C, dan K, serta berbagai mineral seperti zat besi, kalsium, dan magnesium. Selain itu, bayam kakap mengandung protein nabati yang tinggi, menjadikannya sumber makanan yang bergizi bagi vegetarian dan vegan. Antioksidan dalam bayam kakap membantu melawan radikal bebas, mengurangi risiko penyakit kronis, dan mendukung sistem kekebalan tubuh.`,
+      manfaat: [
+        "Kaya Nutrisi: Mengandung vitamin A, C, dan K, serta mineral penting seperti zat besi, kalsium, dan magnesium.",
+        "Antioksidan: Mengandung antioksidan yang bermanfaat untuk melawan radikal bebas dan mengurangi risiko penyakit kronis.",
+        "Kesehatan Darah: Sumber zat besi yang membantu mencegah anemia.",
+        "Kesehatan Pencernaan: Serat tinggi membantu memperlancar sistem pencernaan.",
+        "Menurunkan Tekanan Darah: Kandungan kalium membantu mengatur tekanan darah dan menjaga kesehatan jantung.",
+      ],
+      caraPenanaman: [
+        "Persiapan benih: Pilih benih bayam kakap yang berkualitas.",
+        "Penanaman: Tanam benih dengan kedalaman 0.5-1 cm di tanah yang telah diolah.",
+        "Jarak Tanam: Beri jarak antar tanaman sekitar 20-30 cm agar pertumbuhan optimal.",
         "Penyiraman awal: Siram tanah secara merata setelah menanam benih.",
       ],
       caraPerawatan: [

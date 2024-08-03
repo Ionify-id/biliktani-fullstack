@@ -1,15 +1,15 @@
 const plant = [
   {
     name: "Bayam",
-    rendemen: 2,
+    rendemen: 20,
   },
   {
     name: "Kangkung",
-    rendemen: 2.85,
+    rendemen: 50,
   },
   {
     name: "Kemangi",
-    rendemen: 2.4,
+    rendemen: 10,
   },
 ];
 
@@ -29,9 +29,29 @@ function calculatePrakiraanProduktivitas(rendemen, populasi) {
   return rendemenKilogram;
 }
 
+function calculateBanyakGabung(produktivitas, tanaman) {
+  let pembagi = 0;
+  switch (tanaman) {
+    case "Bayam":
+      pembagi = 10;
+      break;
+    case "Kangkung":
+      pembagi = 7.5;
+      break;
+    case "Kemangi":
+      pembagi = 6.5;
+      break;
+    default:
+      pembagi = 0;
+      break;
+  }
+  return produktivitas / pembagi;
+}
+
 export {
   plant,
   calculateLuasBersih,
   calculatePopulasi,
   calculatePrakiraanProduktivitas,
+  calculateBanyakGabung,
 };
