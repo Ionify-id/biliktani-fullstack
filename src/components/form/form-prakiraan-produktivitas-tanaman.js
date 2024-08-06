@@ -6,6 +6,7 @@ import {
   calculateLuasBersih,
   calculatePopulasi,
   calculatePrakiraanProduktivitas,
+  calculateBanyakGabung,
 } from "@/lib/siap-tani/prakiraan-produktivitas-tanaman";
 import { Button } from "../ui/button";
 
