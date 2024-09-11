@@ -21,7 +21,7 @@ const klinikTani = [
     icon: IconWhatsapp,
   },
   {
-    nama: "Penanggungjawab Website (Merdhiko)",
+    nama: "PJ Website (Merdhiko)",
     link: "https://wa.me/083110788276",
     icon: IconWhatsapp,
   },
@@ -31,7 +31,7 @@ const klinikTani = [
     icon: IconWhatsapp,
   },
   {
-    nama: "Tani Center App",
+    nama: "Digitani App",
     link: "https://play.google.com/store/apps/details?id=id.ac.ipb.mobile.digitani&pcampaignid=web_share",
     icon: IconTaniCenter,
   },
