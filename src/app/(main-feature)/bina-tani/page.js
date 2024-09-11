@@ -32,8 +32,15 @@ export default function BinaTaniPage() {
                     variant="outline"
                     className="w-full flex flex-row space-x-4 border border-2 border-emerald-800 rounded-xl"
                   >
-                    <Image src={data.icon} alt={data.nama} />{" "}
-                    <span className="text-emerald-800">{data.nama}</span>
+                    <Image
+                      src={data.icon}
+                      alt={data.nama}
+                      width={24}
+                      height={24}
+                    />{" "}
+                    <span className="text-emerald-800 overflow-hidden text-ellipsis whitespace-nowrap max-w-full">
+                      {data.nama}
+                    </span>
                   </Button>
                 </a>
               </li>
@@ -60,8 +67,15 @@ export default function BinaTaniPage() {
                     variant="outline"
                     className="w-full flex flex-row space-x-4 border border-2 border-emerald-800 rounded-xl"
                   >
-                    <Image src={data.icon} alt={data.nama} />{" "}
-                    <span className="text-emerald-800">{data.nama}</span>
+                    <Image
+                      src={data.icon}
+                      alt={data.nama}
+                      width={24}
+                      height={24}
+                    />{" "}
+                    <span className="text-emerald-800 overflow-hidden text-ellipsis whitespace-nowrap max-w-full">
+                      {data.nama}
+                    </span>
                   </Button>
                 </a>
               </li>
@@ -92,7 +106,13 @@ export default function BinaTaniPage() {
                       width={24}
                       height={24}
                     />{" "}
-                    <span className={"text-white"}>{data.nama}</span>
+                    <span
+                      className={
+                        "text-white overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
+                      }
+                    >
+                      {data.nama}
+                    </span>
                   </Button>
                 </a>
               </li>
@@ -113,7 +133,13 @@ export default function BinaTaniPage() {
                       width={24}
                       height={24}
                     />{" "}
-                    <span className={"text-emerald-800"}>{data.nama}</span>
+                    <span
+                      className={
+                        "text-emerald-800 overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
+                      }
+                    >
+                      {data.nama}
+                    </span>
                   </Button>
                 </a>
               </li>
@@ -141,11 +167,11 @@ export default function BinaTaniPage() {
                       height={24}
                     />{" "}
                     <span
-                      className={
+                      className={`${
                         data.nama === "Group Jual Beli Agritech Mart"
                           ? "text-emerald-800"
                           : "text-white"
-                      }
+                      } overflow-hidden text-ellipsis whitespace-nowrap max-w-full`}
                     >
                       {data.nama}
                     </span>
